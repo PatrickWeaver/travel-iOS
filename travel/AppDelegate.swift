@@ -1,6 +1,6 @@
 //
 //  AppDelegate.swift
-//  busTime
+//  travel
 //
 //  Created by Patrick Weaver on 8/1/18.
 //  Copyright © 2018 Patrick Weaver. All rights reserved.

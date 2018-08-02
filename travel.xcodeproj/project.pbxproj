@@ -13,10 +13,14 @@
 		CDD843E92112989500989E2E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CDD843E72112989500989E2E /* Main.storyboard */; };
 		CDD843EB2112989700989E2E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CDD843EA2112989700989E2E /* Assets.xcassets */; };
 		CDD843EE2112989700989E2E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CDD843EC2112989700989E2E /* LaunchScreen.storyboard */; };
+		CDD843F6211298DA00989E2E /* Bus.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD843F5211298DA00989E2E /* Bus.swift */; };
+		CDD843F82113C1D600989E2E /* BusLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD843F72113C1D600989E2E /* BusLine.swift */; };
+		CDD843FA2113C31E00989E2E /* BusStop.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD843F92113C31E00989E2E /* BusStop.swift */; };
+		CDD843FC2113C45700989E2E /* BusAtStop.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD843FB2113C45700989E2E /* BusAtStop.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		CDD843DE2112989500989E2E /* busTime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = busTime.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CDD843DE2112989500989E2E /* travel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = travel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDD843E12112989500989E2E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CDD843E32112989500989E2E /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
 		CDD843E52112989500989E2E /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
@@ -24,6 +28,10 @@
 		CDD843EA2112989700989E2E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CDD843ED2112989700989E2E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CDD843EF2112989700989E2E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CDD843F5211298DA00989E2E /* Bus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bus.swift; sourceTree = "<group>"; };
+		CDD843F72113C1D600989E2E /* BusLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusLine.swift; sourceTree = "<group>"; };
+		CDD843F92113C31E00989E2E /* BusStop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusStop.swift; sourceTree = "<group>"; };
+		CDD843FB2113C45700989E2E /* BusAtStop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusAtStop.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,7 +48,7 @@
 		CDD843D52112989500989E2E = {
 			isa = PBXGroup;
 			children = (
-				CDD843E02112989500989E2E /* busTime */,
+				CDD843E02112989500989E2E /* travel */,
 				CDD843DF2112989500989E2E /* Products */,
 			);
 			sourceTree = "<group>";
@@ -48,12 +56,12 @@
 		CDD843DF2112989500989E2E /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				CDD843DE2112989500989E2E /* busTime.app */,
+				CDD843DE2112989500989E2E /* travel.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		CDD843E02112989500989E2E /* busTime */ = {
+		CDD843E02112989500989E2E /* travel */ = {
 			isa = PBXGroup;
 			children = (
 				CDD843E12112989500989E2E /* AppDelegate.swift */,
@@ -63,16 +71,20 @@
 				CDD843EA2112989700989E2E /* Assets.xcassets */,
 				CDD843EC2112989700989E2E /* LaunchScreen.storyboard */,
 				CDD843EF2112989700989E2E /* Info.plist */,
+				CDD843F5211298DA00989E2E /* Bus.swift */,
+				CDD843FB2113C45700989E2E /* BusAtStop.swift */,
+				CDD843F72113C1D600989E2E /* BusLine.swift */,
+				CDD843F92113C31E00989E2E /* BusStop.swift */,
 			);
-			path = busTime;
+			path = travel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		CDD843DD2112989500989E2E /* busTime */ = {
+		CDD843DD2112989500989E2E /* travel */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = CDD843F22112989700989E2E /* Build configuration list for PBXNativeTarget "busTime" */;
+			buildConfigurationList = CDD843F22112989700989E2E /* Build configuration list for PBXNativeTarget "travel" */;
 			buildPhases = (
 				CDD843DA2112989500989E2E /* Sources */,
 				CDD843DB2112989500989E2E /* Frameworks */,
@@ -82,9 +94,9 @@
 			);
 			dependencies = (
 			);
-			name = busTime;
+			name = travel;
 			productName = busTime;
-			productReference = CDD843DE2112989500989E2E /* busTime.app */;
+			productReference = CDD843DE2112989500989E2E /* travel.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -102,7 +114,7 @@
 					};
 				};
 			};
-			buildConfigurationList = CDD843D92112989500989E2E /* Build configuration list for PBXProject "busTime" */;
+			buildConfigurationList = CDD843D92112989500989E2E /* Build configuration list for PBXProject "travel" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -115,7 +127,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				CDD843DD2112989500989E2E /* busTime */,
+				CDD843DD2112989500989E2E /* travel */,
 			);
 		};
 /* End PBXProject section */
@@ -138,8 +150,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CDD843FA2113C31E00989E2E /* BusStop.swift in Sources */,
+				CDD843F82113C1D600989E2E /* BusLine.swift in Sources */,
 				CDD843E62112989500989E2E /* DetailViewController.swift in Sources */,
 				CDD843E42112989500989E2E /* MasterViewController.swift in Sources */,
+				CDD843FC2113C45700989E2E /* BusAtStop.swift in Sources */,
+				CDD843F6211298DA00989E2E /* Bus.swift in Sources */,
 				CDD843E22112989500989E2E /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -291,7 +307,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.patrickweaver.busTime;
+				PRODUCT_BUNDLE_IDENTIFIER = com.patrickweaver.travel;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -309,7 +325,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.patrickweaver.busTime;
+				PRODUCT_BUNDLE_IDENTIFIER = com.patrickweaver.travel;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -319,7 +335,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		CDD843D92112989500989E2E /* Build configuration list for PBXProject "busTime" */ = {
+		CDD843D92112989500989E2E /* Build configuration list for PBXProject "travel" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CDD843F02112989700989E2E /* Debug */,
@@ -328,7 +344,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		CDD843F22112989700989E2E /* Build configuration list for PBXNativeTarget "busTime" */ = {
+		CDD843F22112989700989E2E /* Build configuration list for PBXNativeTarget "travel" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CDD843F32112989700989E2E /* Debug */,
