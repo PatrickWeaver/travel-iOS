@@ -17,6 +17,7 @@
 		CDD843F82113C1D600989E2E /* BusLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD843F72113C1D600989E2E /* BusLine.swift */; };
 		CDD843FA2113C31E00989E2E /* BusStop.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD843F92113C31E00989E2E /* BusStop.swift */; };
 		CDD843FC2113C45700989E2E /* BusAtStop.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD843FB2113C45700989E2E /* BusAtStop.swift */; };
+		CDD9AB9E2113D0A6000FE16C /* ApiController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD9AB9D2113D0A6000FE16C /* ApiController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		CDD843F72113C1D600989E2E /* BusLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusLine.swift; sourceTree = "<group>"; };
 		CDD843F92113C31E00989E2E /* BusStop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusStop.swift; sourceTree = "<group>"; };
 		CDD843FB2113C45700989E2E /* BusAtStop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusAtStop.swift; sourceTree = "<group>"; };
+		CDD9AB9D2113D0A6000FE16C /* ApiController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +67,7 @@
 			isa = PBXGroup;
 			children = (
 				CDD843E12112989500989E2E /* AppDelegate.swift */,
+				CDD9AB9D2113D0A6000FE16C /* ApiController.swift */,
 				CDD843E32112989500989E2E /* MasterViewController.swift */,
 				CDD843E52112989500989E2E /* DetailViewController.swift */,
 				CDD843E72112989500989E2E /* Main.storyboard */,
@@ -154,6 +157,7 @@
 				CDD843F82113C1D600989E2E /* BusLine.swift in Sources */,
 				CDD843E62112989500989E2E /* DetailViewController.swift in Sources */,
 				CDD843E42112989500989E2E /* MasterViewController.swift in Sources */,
+				CDD9AB9E2113D0A6000FE16C /* ApiController.swift in Sources */,
 				CDD843FC2113C45700989E2E /* BusAtStop.swift in Sources */,
 				CDD843F6211298DA00989E2E /* Bus.swift in Sources */,
 				CDD843E22112989500989E2E /* AppDelegate.swift in Sources */,
@@ -302,7 +306,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = SPASYDRHQ5;
-				INFOPLIST_FILE = busTime/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/travel/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -320,7 +324,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = SPASYDRHQ5;
-				INFOPLIST_FILE = busTime/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/travel/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
