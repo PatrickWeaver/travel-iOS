@@ -17,6 +17,7 @@
 		CD16E6762117558C00587841 /* BusLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD16E6752117558C00587841 /* BusLine.swift */; };
 		CD16E6782117559F00587841 /* BusStop.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD16E6772117559F00587841 /* BusStop.swift */; };
 		CD16E67A2117562300587841 /* BusLineFromBusDiscoveryLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD16E6792117562300587841 /* BusLineFromBusDiscoveryLine.swift */; };
+		CDDF5BCC211759AD00BEEA2B /* BusLineCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDDF5BCB211759AD00BEEA2B /* BusLineCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		CD16E6752117558C00587841 /* BusLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusLine.swift; sourceTree = "<group>"; };
 		CD16E6772117559F00587841 /* BusStop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusStop.swift; sourceTree = "<group>"; };
 		CD16E6792117562300587841 /* BusLineFromBusDiscoveryLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusLineFromBusDiscoveryLine.swift; sourceTree = "<group>"; };
+		CDDF5BCB211759AD00BEEA2B /* BusLineCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusLineCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +67,7 @@
 			isa = PBXGroup;
 			children = (
 				CD16E6712117553C00587841 /* Bus.swift */,
+				CDDF5BCB211759AD00BEEA2B /* BusLineCell.swift */,
 				CD16E65F2117550D00587841 /* AppDelegate.swift */,
 				CD16E6612117550D00587841 /* ViewController.swift */,
 				CD16E6792117562300587841 /* BusLineFromBusDiscoveryLine.swift */,
@@ -156,6 +159,7 @@
 				CD16E6722117553C00587841 /* Bus.swift in Sources */,
 				CD16E6622117550D00587841 /* ViewController.swift in Sources */,
 				CD16E6602117550D00587841 /* AppDelegate.swift in Sources */,
+				CDDF5BCC211759AD00BEEA2B /* BusLineCell.swift in Sources */,
 				CD16E6742117557000587841 /* BusAtStop.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

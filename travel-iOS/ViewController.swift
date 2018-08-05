@@ -8,9 +8,29 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        print("BUS LINES COUNT: \(busLines.count)")
+        return busLines.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        print("CELL!")
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "BusLineCell") as? BusLineCell else {
+            print("ELSE! \(indexPath)")
+            return UITableViewCell()
+        }
+        print("YES! \(indexPath)")
+        cell.shortName.text = busLines[indexPath.row].shortName
+        cell.longName.text = busLines[indexPath.row].longName
+        return cell
+    }
+    
 
     var busLines = [BusLine]()
+    
+    @IBOutlet var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,21 +55,22 @@ class ViewController: UIViewController {
         
         do {
             let apiData = try JSONDecoder().decode(BusDiscoveryBlob.self, from: responseData)
-            print(apiData)
+            //print(apiData)
             
             guard var lastRefreshed = apiData.currentTime else { return }
             
             guard let discoveryData = apiData.data else { return }
             guard let busLinesListData = discoveryData.list else { return }
-            //var row: Int = 0
             for busDiscoveryLine in busLinesListData {
                 let busLine = BusLineFromBusDiscoveryLine(busDiscoveryLine)
-                //row += 1
-                DispatchQueue.main.async {
-                    self.busLines.append(busLine)
-                    //let indexPath = IndexPath(row: row, section: 0)
-                    //self.tableView.insertRows(at: [indexPath], with: .automatic)
-                }
+                self.busLines.append(busLine)
+            }
+            print("\(busLines[0].shortName): \(busLines[0].longName)")
+            //print(busLines)
+            print("BEFORE RELOADING")
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+                print("RELOADING")
             }
             
             return
