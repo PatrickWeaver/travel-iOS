@@ -1,16 +1,24 @@
 //
 //  BusLine.swift
-//  travel
+//  travel-iOS
 //
-//  Created by Patrick Weaver on 8/2/18.
+//  Created by Patrick Weaver on 8/5/18.
 //  Copyright © 2018 Patrick Weaver. All rights reserved.
 //
 
 import Foundation
 
 struct BusLine {
-    let name: String
-    let variants: [BusLineVariant]
+    let id: UUID
+    let agencyId: String
+    let color: String
+    let description: String
+    let lineId: String
+    let longName: String
+    let shortName: String
+    let textColor: String
+    let scheduleUrl: String
+    //let variants: [BusLineVariant]
 }
 
 struct BusLineVariant {

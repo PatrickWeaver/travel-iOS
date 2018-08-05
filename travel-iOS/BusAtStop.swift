@@ -1,8 +1,8 @@
 //
 //  BusAtStop.swift
-//  travel
+//  travel-iOS
 //
-//  Created by Patrick Weaver on 8/2/18.
+//  Created by Patrick Weaver on 8/5/18.
 //  Copyright © 2018 Patrick Weaver. All rights reserved.
 //
 

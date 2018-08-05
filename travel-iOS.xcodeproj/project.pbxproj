@@ -7,37 +7,35 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		CDD843E22112989500989E2E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD843E12112989500989E2E /* AppDelegate.swift */; };
-		CDD843E42112989500989E2E /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD843E32112989500989E2E /* MasterViewController.swift */; };
-		CDD843E62112989500989E2E /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD843E52112989500989E2E /* DetailViewController.swift */; };
-		CDD843E92112989500989E2E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CDD843E72112989500989E2E /* Main.storyboard */; };
-		CDD843EB2112989700989E2E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CDD843EA2112989700989E2E /* Assets.xcassets */; };
-		CDD843EE2112989700989E2E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CDD843EC2112989700989E2E /* LaunchScreen.storyboard */; };
-		CDD843F6211298DA00989E2E /* Bus.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD843F5211298DA00989E2E /* Bus.swift */; };
-		CDD843F82113C1D600989E2E /* BusLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD843F72113C1D600989E2E /* BusLine.swift */; };
-		CDD843FA2113C31E00989E2E /* BusStop.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD843F92113C31E00989E2E /* BusStop.swift */; };
-		CDD843FC2113C45700989E2E /* BusAtStop.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD843FB2113C45700989E2E /* BusAtStop.swift */; };
-		CDD9AB9E2113D0A6000FE16C /* ApiController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD9AB9D2113D0A6000FE16C /* ApiController.swift */; };
+		CD16E6602117550D00587841 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD16E65F2117550D00587841 /* AppDelegate.swift */; };
+		CD16E6622117550D00587841 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD16E6612117550D00587841 /* ViewController.swift */; };
+		CD16E6652117550D00587841 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD16E6632117550D00587841 /* Main.storyboard */; };
+		CD16E6672117550E00587841 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CD16E6662117550E00587841 /* Assets.xcassets */; };
+		CD16E66A2117550E00587841 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD16E6682117550E00587841 /* LaunchScreen.storyboard */; };
+		CD16E6722117553C00587841 /* Bus.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD16E6712117553C00587841 /* Bus.swift */; };
+		CD16E6742117557000587841 /* BusAtStop.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD16E6732117557000587841 /* BusAtStop.swift */; };
+		CD16E6762117558C00587841 /* BusLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD16E6752117558C00587841 /* BusLine.swift */; };
+		CD16E6782117559F00587841 /* BusStop.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD16E6772117559F00587841 /* BusStop.swift */; };
+		CD16E67A2117562300587841 /* BusLineFromBusDiscoveryLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD16E6792117562300587841 /* BusLineFromBusDiscoveryLine.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		CDD843DE2112989500989E2E /* travel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = travel.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		CDD843E12112989500989E2E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		CDD843E32112989500989E2E /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
-		CDD843E52112989500989E2E /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
-		CDD843E82112989500989E2E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		CDD843EA2112989700989E2E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		CDD843ED2112989700989E2E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		CDD843EF2112989700989E2E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		CDD843F5211298DA00989E2E /* Bus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bus.swift; sourceTree = "<group>"; };
-		CDD843F72113C1D600989E2E /* BusLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusLine.swift; sourceTree = "<group>"; };
-		CDD843F92113C31E00989E2E /* BusStop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusStop.swift; sourceTree = "<group>"; };
-		CDD843FB2113C45700989E2E /* BusAtStop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusAtStop.swift; sourceTree = "<group>"; };
-		CDD9AB9D2113D0A6000FE16C /* ApiController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiController.swift; sourceTree = "<group>"; };
+		CD16E65C2117550D00587841 /* travel-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "travel-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CD16E65F2117550D00587841 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		CD16E6612117550D00587841 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		CD16E6642117550D00587841 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		CD16E6662117550E00587841 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		CD16E6692117550E00587841 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		CD16E66B2117550E00587841 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CD16E6712117553C00587841 /* Bus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bus.swift; sourceTree = "<group>"; };
+		CD16E6732117557000587841 /* BusAtStop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusAtStop.swift; sourceTree = "<group>"; };
+		CD16E6752117558C00587841 /* BusLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusLine.swift; sourceTree = "<group>"; };
+		CD16E6772117559F00587841 /* BusStop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusStop.swift; sourceTree = "<group>"; };
+		CD16E6792117562300587841 /* BusLineFromBusDiscoveryLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusLineFromBusDiscoveryLine.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		CDD843DB2112989500989E2E /* Frameworks */ = {
+		CD16E6592117550D00587841 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -47,77 +45,76 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		CDD843D52112989500989E2E = {
+		CD16E6532117550D00587841 = {
 			isa = PBXGroup;
 			children = (
-				CDD843E02112989500989E2E /* travel */,
-				CDD843DF2112989500989E2E /* Products */,
+				CD16E65E2117550D00587841 /* travel-iOS */,
+				CD16E65D2117550D00587841 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		CDD843DF2112989500989E2E /* Products */ = {
+		CD16E65D2117550D00587841 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				CDD843DE2112989500989E2E /* travel.app */,
+				CD16E65C2117550D00587841 /* travel-iOS.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		CDD843E02112989500989E2E /* travel */ = {
+		CD16E65E2117550D00587841 /* travel-iOS */ = {
 			isa = PBXGroup;
 			children = (
-				CDD843E12112989500989E2E /* AppDelegate.swift */,
-				CDD9AB9D2113D0A6000FE16C /* ApiController.swift */,
-				CDD843E32112989500989E2E /* MasterViewController.swift */,
-				CDD843E52112989500989E2E /* DetailViewController.swift */,
-				CDD843E72112989500989E2E /* Main.storyboard */,
-				CDD843EA2112989700989E2E /* Assets.xcassets */,
-				CDD843EC2112989700989E2E /* LaunchScreen.storyboard */,
-				CDD843EF2112989700989E2E /* Info.plist */,
-				CDD843F5211298DA00989E2E /* Bus.swift */,
-				CDD843FB2113C45700989E2E /* BusAtStop.swift */,
-				CDD843F72113C1D600989E2E /* BusLine.swift */,
-				CDD843F92113C31E00989E2E /* BusStop.swift */,
+				CD16E6712117553C00587841 /* Bus.swift */,
+				CD16E65F2117550D00587841 /* AppDelegate.swift */,
+				CD16E6612117550D00587841 /* ViewController.swift */,
+				CD16E6792117562300587841 /* BusLineFromBusDiscoveryLine.swift */,
+				CD16E6632117550D00587841 /* Main.storyboard */,
+				CD16E6662117550E00587841 /* Assets.xcassets */,
+				CD16E6682117550E00587841 /* LaunchScreen.storyboard */,
+				CD16E66B2117550E00587841 /* Info.plist */,
+				CD16E6732117557000587841 /* BusAtStop.swift */,
+				CD16E6752117558C00587841 /* BusLine.swift */,
+				CD16E6772117559F00587841 /* BusStop.swift */,
 			);
-			path = travel;
+			path = "travel-iOS";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		CDD843DD2112989500989E2E /* travel */ = {
+		CD16E65B2117550D00587841 /* travel-iOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = CDD843F22112989700989E2E /* Build configuration list for PBXNativeTarget "travel" */;
+			buildConfigurationList = CD16E66E2117550E00587841 /* Build configuration list for PBXNativeTarget "travel-iOS" */;
 			buildPhases = (
-				CDD843DA2112989500989E2E /* Sources */,
-				CDD843DB2112989500989E2E /* Frameworks */,
-				CDD843DC2112989500989E2E /* Resources */,
+				CD16E6582117550D00587841 /* Sources */,
+				CD16E6592117550D00587841 /* Frameworks */,
+				CD16E65A2117550D00587841 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = travel;
-			productName = busTime;
-			productReference = CDD843DE2112989500989E2E /* travel.app */;
+			name = "travel-iOS";
+			productName = "travel-iOS";
+			productReference = CD16E65C2117550D00587841 /* travel-iOS.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		CDD843D62112989500989E2E /* Project object */ = {
+		CD16E6542117550D00587841 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0940;
 				LastUpgradeCheck = 0940;
 				ORGANIZATIONNAME = "Patrick Weaver";
 				TargetAttributes = {
-					CDD843DD2112989500989E2E = {
+					CD16E65B2117550D00587841 = {
 						CreatedOnToolsVersion = 9.4.1;
 					};
 				};
 			};
-			buildConfigurationList = CDD843D92112989500989E2E /* Build configuration list for PBXProject "travel" */;
+			buildConfigurationList = CD16E6572117550D00587841 /* Build configuration list for PBXProject "travel-iOS" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -125,60 +122,59 @@
 				en,
 				Base,
 			);
-			mainGroup = CDD843D52112989500989E2E;
-			productRefGroup = CDD843DF2112989500989E2E /* Products */;
+			mainGroup = CD16E6532117550D00587841;
+			productRefGroup = CD16E65D2117550D00587841 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				CDD843DD2112989500989E2E /* travel */,
+				CD16E65B2117550D00587841 /* travel-iOS */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		CDD843DC2112989500989E2E /* Resources */ = {
+		CD16E65A2117550D00587841 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CDD843EE2112989700989E2E /* LaunchScreen.storyboard in Resources */,
-				CDD843EB2112989700989E2E /* Assets.xcassets in Resources */,
-				CDD843E92112989500989E2E /* Main.storyboard in Resources */,
+				CD16E66A2117550E00587841 /* LaunchScreen.storyboard in Resources */,
+				CD16E6672117550E00587841 /* Assets.xcassets in Resources */,
+				CD16E6652117550D00587841 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		CDD843DA2112989500989E2E /* Sources */ = {
+		CD16E6582117550D00587841 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CDD843FA2113C31E00989E2E /* BusStop.swift in Sources */,
-				CDD843F82113C1D600989E2E /* BusLine.swift in Sources */,
-				CDD843E62112989500989E2E /* DetailViewController.swift in Sources */,
-				CDD843E42112989500989E2E /* MasterViewController.swift in Sources */,
-				CDD9AB9E2113D0A6000FE16C /* ApiController.swift in Sources */,
-				CDD843FC2113C45700989E2E /* BusAtStop.swift in Sources */,
-				CDD843F6211298DA00989E2E /* Bus.swift in Sources */,
-				CDD843E22112989500989E2E /* AppDelegate.swift in Sources */,
+				CD16E6782117559F00587841 /* BusStop.swift in Sources */,
+				CD16E6762117558C00587841 /* BusLine.swift in Sources */,
+				CD16E67A2117562300587841 /* BusLineFromBusDiscoveryLine.swift in Sources */,
+				CD16E6722117553C00587841 /* Bus.swift in Sources */,
+				CD16E6622117550D00587841 /* ViewController.swift in Sources */,
+				CD16E6602117550D00587841 /* AppDelegate.swift in Sources */,
+				CD16E6742117557000587841 /* BusAtStop.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		CDD843E72112989500989E2E /* Main.storyboard */ = {
+		CD16E6632117550D00587841 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				CDD843E82112989500989E2E /* Base */,
+				CD16E6642117550D00587841 /* Base */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
-		CDD843EC2112989700989E2E /* LaunchScreen.storyboard */ = {
+		CD16E6682117550E00587841 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				CDD843ED2112989700989E2E /* Base */,
+				CD16E6692117550E00587841 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -186,7 +182,7 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		CDD843F02112989700989E2E /* Debug */ = {
+		CD16E66C2117550E00587841 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -246,7 +242,7 @@
 			};
 			name = Debug;
 		};
-		CDD843F12112989700989E2E /* Release */ = {
+		CD16E66D2117550E00587841 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -300,36 +296,36 @@
 			};
 			name = Release;
 		};
-		CDD843F32112989700989E2E /* Debug */ = {
+		CD16E66F2117550E00587841 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = SPASYDRHQ5;
-				INFOPLIST_FILE = "$(SRCROOT)/travel/Info.plist";
+				INFOPLIST_FILE = "travel-iOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.patrickweaver.travel;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.patrickweaver.travel-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
-		CDD843F42112989700989E2E /* Release */ = {
+		CD16E6702117550E00587841 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = SPASYDRHQ5;
-				INFOPLIST_FILE = "$(SRCROOT)/travel/Info.plist";
+				INFOPLIST_FILE = "travel-iOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.patrickweaver.travel;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.patrickweaver.travel-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -339,25 +335,25 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		CDD843D92112989500989E2E /* Build configuration list for PBXProject "travel" */ = {
+		CD16E6572117550D00587841 /* Build configuration list for PBXProject "travel-iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				CDD843F02112989700989E2E /* Debug */,
-				CDD843F12112989700989E2E /* Release */,
+				CD16E66C2117550E00587841 /* Debug */,
+				CD16E66D2117550E00587841 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		CDD843F22112989700989E2E /* Build configuration list for PBXNativeTarget "travel" */ = {
+		CD16E66E2117550E00587841 /* Build configuration list for PBXNativeTarget "travel-iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				CDD843F32112989700989E2E /* Debug */,
-				CDD843F42112989700989E2E /* Release */,
+				CD16E66F2117550E00587841 /* Debug */,
+				CD16E6702117550E00587841 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = CDD843D62112989500989E2E /* Project object */;
+	rootObject = CD16E6542117550D00587841 /* Project object */;
 }

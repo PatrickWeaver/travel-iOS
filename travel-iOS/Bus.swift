@@ -1,13 +1,12 @@
 //
 //  Bus.swift
-//  B38
+//  travel-iOS
 //
-//  Created by Patrick Weaver on 7/28/18.
+//  Created by Patrick Weaver on 8/5/18.
 //  Copyright © 2018 Patrick Weaver. All rights reserved.
 //
 
 import Foundation
-import UIKit
 
 func dateFromDatetimeString(dt: String?) -> Date? {
     guard let dtS = dt else {
