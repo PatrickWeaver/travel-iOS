@@ -17,6 +17,7 @@
 		CD16E6762117558C00587841 /* BusLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD16E6752117558C00587841 /* BusLine.swift */; };
 		CD16E6782117559F00587841 /* BusStop.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD16E6772117559F00587841 /* BusStop.swift */; };
 		CD16E67A2117562300587841 /* BusLineFromBusDiscoveryLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD16E6792117562300587841 /* BusLineFromBusDiscoveryLine.swift */; };
+		CDC7AD6B211917B0008EF500 /* BusLineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC7AD6A211917B0008EF500 /* BusLineViewController.swift */; };
 		CDDF5BCC211759AD00BEEA2B /* BusLineCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDDF5BCB211759AD00BEEA2B /* BusLineCell.swift */; };
 /* End PBXBuildFile section */
 
@@ -33,6 +34,7 @@
 		CD16E6752117558C00587841 /* BusLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusLine.swift; sourceTree = "<group>"; };
 		CD16E6772117559F00587841 /* BusStop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusStop.swift; sourceTree = "<group>"; };
 		CD16E6792117562300587841 /* BusLineFromBusDiscoveryLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusLineFromBusDiscoveryLine.swift; sourceTree = "<group>"; };
+		CDC7AD6A211917B0008EF500 /* BusLineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusLineViewController.swift; sourceTree = "<group>"; };
 		CDDF5BCB211759AD00BEEA2B /* BusLineCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusLineCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -72,6 +74,7 @@
 				CD16E6612117550D00587841 /* ViewController.swift */,
 				CD16E6792117562300587841 /* BusLineFromBusDiscoveryLine.swift */,
 				CD16E6632117550D00587841 /* Main.storyboard */,
+				CDC7AD6A211917B0008EF500 /* BusLineViewController.swift */,
 				CD16E6662117550E00587841 /* Assets.xcassets */,
 				CD16E6682117550E00587841 /* LaunchScreen.storyboard */,
 				CD16E66B2117550E00587841 /* Info.plist */,
@@ -154,6 +157,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CD16E6782117559F00587841 /* BusStop.swift in Sources */,
+				CDC7AD6B211917B0008EF500 /* BusLineViewController.swift in Sources */,
 				CD16E6762117558C00587841 /* BusLine.swift in Sources */,
 				CD16E67A2117562300587841 /* BusLineFromBusDiscoveryLine.swift in Sources */,
 				CD16E6722117553C00587841 /* Bus.swift in Sources */,

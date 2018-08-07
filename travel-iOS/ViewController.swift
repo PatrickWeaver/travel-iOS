@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, UITableViewDataSource {
+class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         print("BUS LINES COUNT: \(busLines.count)")
@@ -27,15 +27,31 @@ class ViewController: UIViewController, UITableViewDataSource {
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let mainStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        
+        guard let busLineViewController = mainStoryboard.instantiateViewController(withIdentifier: "BusLineViewController") as? BusLineViewController else { return }
+        
+        
+        busLineViewController.busLine = busLines[indexPath.row]
+        
+        present(busLineViewController, animated: true, completion: nil)
+    }
+    
 
     var busLines = [BusLine]()
     
     @IBOutlet var tableView: UITableView!
     
+    
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         getBusRoutes()
+        tableView.tableFooterView = UIView()
     }
 
     override func didReceiveMemoryWarning() {
