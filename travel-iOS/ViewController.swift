@@ -16,12 +16,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        print("CELL!")
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "BusLineCell") as? BusLineCell else {
             print("ELSE! \(indexPath)")
             return UITableViewCell()
         }
-        print("YES! \(indexPath)")
         cell.shortName.text = busLines[indexPath.row].shortName
         cell.longName.text = busLines[indexPath.row].longName
         return cell

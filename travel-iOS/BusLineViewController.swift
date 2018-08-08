@@ -14,6 +14,15 @@ class BusLineViewController: UITableViewController {
 
     @IBOutlet weak var shortName: UILabel!
     
+    @IBAction func backButton(_ sender: UIButton) {
+        let mainStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        
+        guard let viewController = mainStoryboard.instantiateViewController(withIdentifier: "busLinesListViewController") as? ViewController else { return }
+        
+        
+        present(viewController, animated: true, completion: nil)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -43,6 +52,13 @@ class BusLineViewController: UITableViewController {
         // #warning Incomplete implementation, return the number of rows
         return 0
     }
+    
+    func getLineStops() {
+        //let discoveryUrl = "https://mta-api.glitch.me/api/bus/routes"
+        //makeApiCall(to: discoveryUrl, then: parseBusRoutes)
+    }
+    
+    
 
     /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
