@@ -25,24 +25,24 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         return cell
     }
     
+    /*
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let mainStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
         
         guard let busLineViewController = mainStoryboard.instantiateViewController(withIdentifier: "BusLineViewController") as? BusLineViewController else { return }
-        
+        //let destinationVC = BusLineViewController()
+        //destinationVC.busLine = busLines[indexPath.row]
         
         busLineViewController.busLine = busLines[indexPath.row]
-        
-        present(busLineViewController, animated: true, completion: nil)
+        //let data = busLines[indexPath.row]
+        self.performSegue(withIdentifier: "BusLinesToBusLine2", sender: self)
+        //present(busLineViewController, animated: true, completion: nil)
     }
-    
+ */
 
     var busLines = [BusLine]()
     
     @IBOutlet var tableView: UITableView!
-    
-    
-    
     
     
     override func viewDidLoad() {
@@ -56,6 +56,26 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        /*
+        let data = busLines[0]
+        if let destinationViewController = segue.destination as? BusLineViewController {
+            destinationViewController.busLine = data
+        }
+        */
+        if let indexPath = tableView.indexPathForSelectedRow{
+            print("ROW: \(indexPath.row)")
+            let selectedRow = indexPath.row
+            if let detailVC = segue.destination as? BusLineViewController {
+                print("DETAIL")
+                detailVC.busLine = self.busLines[selectedRow]
+                //self.performSegue(withIdentifier: "BusLinesToBusLine", sender: self)
+            }
+        }
+    }
+
     
     func getBusRoutes() {
         let discoveryUrl = "https://mta-api.glitch.me/api/bus/routes"
@@ -104,8 +124,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             return
         }
         
-        
-        URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error) in
+        URLSession.shared.dataTask(with: url) { (data, response, error) in
             
             // Check for error
             guard let responseData = data else {
@@ -121,7 +140,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             
             whenFinished(responseData)
             return
-        }).resume()
+        }.resume()
     }
 
 

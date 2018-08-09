@@ -14,15 +14,6 @@ class BusLineViewController: UITableViewController {
 
     @IBOutlet weak var shortName: UILabel!
     
-    @IBAction func backButton(_ sender: UIButton) {
-        let mainStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-        
-        guard let viewController = mainStoryboard.instantiateViewController(withIdentifier: "busLinesListViewController") as? ViewController else { return }
-        
-        
-        present(viewController, animated: true, completion: nil)
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -32,7 +23,12 @@ class BusLineViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
         
-        guard let busLineShortName = busLine?.shortName else { return }
+        let busLineShortName: String
+        if  busLine != nil {
+            busLineShortName = busLine!.shortName
+        } else {
+            busLineShortName = "NO DATA"
+        }
         shortName.text = busLineShortName
     }
 
