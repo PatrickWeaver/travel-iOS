@@ -11,8 +11,10 @@ import UIKit
 class BusLineViewController: UITableViewController {
     
     var busLine: BusLine?
+    var busStops = [BusStop]()
 
     @IBOutlet weak var shortName: UILabel!
+    @IBOutlet var busLineTableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,7 +24,7 @@ class BusLineViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
-        
+        getBusStops()
         let busLineShortName: String
         if  busLine != nil {
             busLineShortName = busLine!.shortName
@@ -30,6 +32,7 @@ class BusLineViewController: UITableViewController {
             busLineShortName = "NO DATA"
         }
         shortName.text = busLineShortName
+        tableView.tableFooterView = UIView()
     }
 
     override func didReceiveMemoryWarning() {
@@ -41,30 +44,68 @@ class BusLineViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return busStops.count
     }
     
-    func getLineStops() {
-        //let discoveryUrl = "https://mta-api.glitch.me/api/bus/routes"
-        //makeApiCall(to: discoveryUrl, then: parseBusRoutes)
+    func getBusStops() {
+        guard let busLine = busLine else {
+            return
+        }
+        let discoveryUrl = "https://mta-api.glitch.me/api/bus/\(busLine.shortName)"
+        makeApiCall(to: discoveryUrl, then: parseBusStops)
     }
     
+    func parseBusStops(_ responseData: Data?) -> Void {
+        guard let responseData = responseData else {
+            return
+        }
+        
+        do {
+            let apiData = try JSONDecoder().decode(BusLineDiscoveryBlob.self, from: responseData)
+            print(apiData)
+            guard var lastRefreshed = apiData.currentUnixTime else { return }
+            
+            guard let discoveryLineData = apiData.busLineData else { return }
+            guard let busLinesEntryData = discoveryLineData.entry else { return }
+            for busStopId in busLinesEntryData.stopIds {
+                guard let busStopId = busStopId else { return }
+                let busStop = BusStopFromDiscoveryBusStop(busStopId)
+                self.busStops.append(busStop)
+            }
+            DispatchQueue.main.async {
+                self.busLineTableView.reloadData()
+            }
+            
+            return
+        } catch {
+            print("Catch: Line")
+            print(error)
+            return
+        }
+    }
     
-
-    /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
 
-        // Configure the cell...
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "BusStopCell") as? BusStopCell else {
+            print("Can't assign cell")
+            return UITableViewCell()
+        }
+        cell.mtaId.text = busStops[indexPath.row].mtaId
 
+        /*
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "BusLineCell") as? BusLineCell else {
+            return UITableViewCell()
+        }
+        cell.shortName.text = busLines[indexPath.row].shortName
+        cell.longName.text = busLines[indexPath.row].longName
+         */
         return cell
     }
-    */
 
     /*
     // Override to support conditional editing of the table view.

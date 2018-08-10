@@ -9,7 +9,8 @@
 import Foundation
 
 struct BusStop {
-    let latitude: Double
-    let longitude: Double
-    let inUse: Bool
+    let mtaId: String
+    //let latitude: Double
+    //let longitude: Double
+    //let inUse: Bool
 }

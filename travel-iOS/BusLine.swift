@@ -33,16 +33,17 @@ struct BusLineVariant {
 
 /* Json Parsing */
 
-struct BusDiscoveryBlob: Decodable {
+// Bus Lines
+struct BusLinesDiscoveryBlob: Decodable {
     let code: Int?
-    let currentTime: Int?
+    let currentUnixTime: Int?
     let data: BusDiscoveryData?
     let text: String?
     let version: Int?
     
     enum CodingKeys: String, CodingKey {
         case code
-        case currentTime
+        case currentUnixTime = "currentTime"
         case data
         case text
         case version
@@ -77,4 +78,50 @@ struct BusDiscoveryLine: Decodable {
         case url
     }
 }
+
+// Bus Line
+
+struct BusLineDiscoveryBlob: Decodable {
+    let statusCode: Int?
+    let currentUnixTime: Int? // Time?
+    let busLineData: BusLineData?
+    let statusMessage: String?
+    let version: Int?
+
+    enum CodingKeys: String, CodingKey {
+        case statusCode = "code"
+        case currentUnixTime = "currentTime"
+        case busLineData = "data"
+        case statusMessage = "text"
+        case version
+    }
+}
+
+struct BusLineData: Decodable {
+    let entry: BusLineEntry?
+    let references: BusLineReferences?
+    
+    enum CodingKeys: String, CodingKey {
+        case entry
+        case references
+    }
+}
+
+
+struct BusLineEntry: Decodable {
+    // let polylines: [any?]
+    let routeId: String?
+    let stopGroupings: [StopGroupings?]
+    let stopIds: [String?]
+}
+
+struct BusLineReferences: Decodable {
+    
+}
+
+struct StopGroupings: Decodable {
+    
+}
+
+
 

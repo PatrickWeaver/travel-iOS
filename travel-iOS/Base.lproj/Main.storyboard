@@ -10,10 +10,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Bus Lines-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="busLinesListViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" customClass="ViewController" customModule="travel_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="busLinesListViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" customClass="BusLinesViewController" customModule="travel_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -75,7 +75,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <navigationItem key="navigationItem" id="mxR-s7-iOj"/>
+                    <navigationItem key="navigationItem" title="Bus Lines" id="mxR-s7-iOj"/>
                     <connections>
                         <outlet property="tableView" destination="SIK-zL-lmW" id="kzS-xc-8lL"/>
                     </connections>
@@ -87,7 +87,6 @@
         <!--Bus Line View Controller-->
         <scene sceneID="xfU-ad-fom">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="eMo-8b-996" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController storyboardIdentifier="BusLineViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="1j4-aJ-FeA" customClass="BusLineViewController" customModule="travel_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="C8a-sH-xhq">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
@@ -97,23 +96,40 @@
                             <rect key="frame" x="0.0" y="0.0" width="375" height="111"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="ShortName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tus-V4-fF8">
-                                    <rect key="frame" x="8" y="38" width="137" height="34"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ShortName" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tus-V4-fF8">
+                                    <rect key="frame" x="8" y="38.5" width="359" height="33.5"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="28"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
+                            <constraints>
+                                <constraint firstItem="Tus-V4-fF8" firstAttribute="centerX" secondItem="42c-Js-dt3" secondAttribute="centerX" id="Q0A-DZ-PP4"/>
+                                <constraint firstItem="Tus-V4-fF8" firstAttribute="centerY" secondItem="42c-Js-dt3" secondAttribute="centerY" id="hq2-a3-LrH"/>
+                                <constraint firstAttribute="trailing" secondItem="Tus-V4-fF8" secondAttribute="trailing" constant="8" id="lls-is-3qA"/>
+                                <constraint firstItem="Tus-V4-fF8" firstAttribute="leading" secondItem="42c-Js-dt3" secondAttribute="leading" constant="8" id="z94-bB-oy3"/>
+                            </constraints>
                         </view>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="Zqv-OA-rdg">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="BusStopCell" id="Zqv-OA-rdg" customClass="BusStopCell" customModule="travel_iOS" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="139" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Zqv-OA-rdg" id="CSF-MA-DF2">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="mtaId" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lRk-jj-FLn">
+                                            <rect key="frame" x="8" y="5" width="359" height="32"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="mtaId" destination="lRk-jj-FLn" id="Qtk-xV-rIT"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -122,11 +138,14 @@
                         </connections>
                     </tableView>
                     <connections>
+                        <outlet property="busLineTableView" destination="C8a-sH-xhq" id="UI0-ez-AgJ"/>
                         <outlet property="shortName" destination="Tus-V4-fF8" id="6QL-2v-zGi"/>
+                        <outlet property="tableView" destination="C8a-sH-xhq" id="ZV1-Oe-Urf"/>
                     </connections>
                 </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eMo-8b-996" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1620" y="88"/>
+            <point key="canvasLocation" x="1620" y="87.706146926536732"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="6MT-t3-QsL">
