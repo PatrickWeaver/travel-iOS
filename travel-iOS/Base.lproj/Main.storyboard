@@ -6,6 +6,8 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
+        <capability name="Baseline standard spacing" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -111,24 +113,42 @@
                             </constraints>
                         </view>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="BusStopCell" id="Zqv-OA-rdg" customClass="BusStopCell" customModule="travel_iOS" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="139" width="375" height="44"/>
+                            <tableViewCell contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="BusStopCell" rowHeight="88" id="Zqv-OA-rdg" customClass="BusStopCell" customModule="travel_iOS" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="139" width="375" height="88"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Zqv-OA-rdg" id="CSF-MA-DF2">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="87.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="mtaId" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lRk-jj-FLn">
-                                            <rect key="frame" x="8" y="5" width="359" height="32"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="intersection" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ar9-Z6-3HD">
+                                            <rect key="frame" x="8" y="5" width="359" height="30.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="stopId" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f1J-LL-pui">
+                                            <rect key="frame" x="8" y="39" width="146" height="32"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="146" id="3Xd-Yt-vF1"/>
+                                                <constraint firstAttribute="height" constant="32" id="3hF-OT-82s"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="bottom" secondItem="f1J-LL-pui" secondAttribute="bottom" constant="16.5" id="52H-TF-hL4"/>
+                                        <constraint firstItem="f1J-LL-pui" firstAttribute="leading" secondItem="CSF-MA-DF2" secondAttribute="leading" constant="8" id="GfZ-kL-Io2"/>
+                                        <constraint firstItem="ar9-Z6-3HD" firstAttribute="leading" secondItem="CSF-MA-DF2" secondAttribute="leading" constant="8" id="Qz4-eX-pIg"/>
+                                        <constraint firstItem="f1J-LL-pui" firstAttribute="firstBaseline" secondItem="ar9-Z6-3HD" secondAttribute="baseline" constant="24" symbolType="layoutAnchor" id="q9T-yo-AkB"/>
+                                        <constraint firstItem="ar9-Z6-3HD" firstAttribute="top" secondItem="CSF-MA-DF2" secondAttribute="top" constant="5" id="s5B-on-b0F"/>
+                                        <constraint firstItem="ar9-Z6-3HD" firstAttribute="centerX" secondItem="CSF-MA-DF2" secondAttribute="centerX" id="x2I-Mj-KMq"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="mtaId" destination="lRk-jj-FLn" id="Qtk-xV-rIT"/>
+                                    <outlet property="intersection" destination="ar9-Z6-3HD" id="DTO-LG-yCy"/>
+                                    <outlet property="stopId" destination="f1J-LL-pui" id="ABP-wR-M8z"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

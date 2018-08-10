@@ -71,8 +71,8 @@ class BusLinesViewController: UIViewController, UITableViewDataSource, UITableVi
                 
             }
             guard let discoveryData = apiData.data else { return }
-            guard let busLinesListData = discoveryData.list else { return }
-            for busDiscoveryLine in busLinesListData {
+            for busDiscoveryLine in discoveryData.list {
+                guard let busDiscoveryLine = busDiscoveryLine else { return }
                 let busLine = BusLineFromBusDiscoveryLine(busDiscoveryLine)
                 self.busLines.append(busLine)
             }
@@ -87,9 +87,5 @@ class BusLinesViewController: UIViewController, UITableViewDataSource, UITableVi
             return
         }
     }
-    
-
-
-
 }
 

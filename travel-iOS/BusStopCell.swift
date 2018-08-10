@@ -10,8 +10,9 @@ import UIKit
 
 class BusStopCell: UITableViewCell {
     
+    @IBOutlet weak var stopId: UILabel!
+    @IBOutlet weak var intersection: UILabel!
     
-    @IBOutlet weak var mtaId: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

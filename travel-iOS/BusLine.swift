@@ -52,7 +52,7 @@ struct BusLinesDiscoveryBlob: Decodable {
 
 struct BusDiscoveryData: Decodable {
     let limitedExceeded: Bool?
-    let list: [BusDiscoveryLine]?
+    let list: [BusDiscoveryLine?]
 }
 
 struct BusDiscoveryLine: Decodable {

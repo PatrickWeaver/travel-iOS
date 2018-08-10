@@ -51,8 +51,8 @@ class BusLineViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        print("Number of Stops: \(busStops.count)")
-        return busStops.count
+        print("Number of Stops: \(routeGroupings.count)")
+        return routeGroupings.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -61,15 +61,18 @@ class BusLineViewController: UITableViewController {
             print("Can't assign cell")
             return UITableViewCell()
         }
-        cell.mtaId.text = busStops[indexPath.row].mtaId
+        let stop = routeStops[indexPath.row]
+        cell.stopId.text = stop.stopId
+        cell.intersection.text = stop.intersectionName
         
-        /*
+         /*
          guard let cell = tableView.dequeueReusableCell(withIdentifier: "BusLineCell") as? BusLineCell else {
          return UITableViewCell()
          }
          cell.shortName.text = busLines[indexPath.row].shortName
          cell.longName.text = busLines[indexPath.row].longName
          */
+        
         return cell
     }
     
@@ -88,7 +91,7 @@ class BusLineViewController: UITableViewController {
         
         do {
             let apiData = try JSONDecoder().decode(BusLineDiscoveryBlob.self, from: responseData)
-            print(apiData)
+            //print(apiData)
             guard var lastRefreshed = apiData.currentUnixTime else { return }
             
             guard let discoveryLineData = apiData.busLineData else { return }
@@ -97,15 +100,28 @@ class BusLineViewController: UITableViewController {
             guard let busLineEntryData = discoveryLineData.entry else { return }
             for busStopId in busLineEntryData.stopIds {
                 guard let busStopId = busStopId else { return }
-                self.routeGroupings.append(busStopId)
+                routeGroupings.append(busStopId)
             }
             
             // Get all BusStops on route and store in BusStops
             guard let busLineReferenceData = discoveryLineData.references else { return }
             for discoveryStop in busLineReferenceData.stops {
+                guard let discoveryStop = discoveryStop else { return }
                 let busStop = BusStopFromDiscoveryBusStop(discoveryStop)
                 busStops.append(busStop)
             }
+            
+            // Find each BusStop from the ordered routeGroupings
+            for stopId in routeGroupings {
+                for stop in busStops {
+                    if stopId == stop.mtaId {
+                        routeStops.append(stop)
+                        break
+                    }
+                }
+            }
+            
+            
             
             
             DispatchQueue.main.async {
@@ -120,11 +136,11 @@ class BusLineViewController: UITableViewController {
         }
     }
     
-    
+    /*
     func findBusStopFrom(mtaId: String) -> BusStop {
         
     }
-    
+    */
 
 
     /*

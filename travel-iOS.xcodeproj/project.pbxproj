@@ -74,7 +74,6 @@
 			children = (
 				CD88B84F211D179300778935 /* ApiController.swift */,
 				CD16E65F2117550D00587841 /* AppDelegate.swift */,
-				CD88B853211D1FF800778935 /* BusStopCell.swift */,
 				CD16E6662117550E00587841 /* Assets.xcassets */,
 				CD16E6712117553C00587841 /* Bus.swift */,
 				CD16E6732117557000587841 /* BusAtStop.swift */,
@@ -83,6 +82,7 @@
 				CD16E6612117550D00587841 /* BusLinesViewController.swift */,
 				CDC7AD6A211917B0008EF500 /* BusLineViewController.swift */,
 				CD16E6772117559F00587841 /* BusStop.swift */,
+				CD88B853211D1FF800778935 /* BusStopCell.swift */,
 				CD16E66B2117550E00587841 /* Info.plist */,
 				CD16E6682117550E00587841 /* LaunchScreen.storyboard */,
 				CD16E6632117550D00587841 /* Main.storyboard */,
