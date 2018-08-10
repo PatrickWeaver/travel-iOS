@@ -11,7 +11,9 @@ import UIKit
 class BusLineViewController: UITableViewController {
     
     var busLine: BusLine?
-    var busStops = [BusStop]()
+    var busStops = [BusStop]() // Set?
+    var routeGroupings = [String]()
+    var routeStops = [BusStop]()
 
     @IBOutlet weak var shortName: UILabel!
     @IBOutlet var busLineTableView: UITableView!
@@ -49,7 +51,26 @@ class BusLineViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
+        print("Number of Stops: \(busStops.count)")
         return busStops.count
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "BusStopCell") as? BusStopCell else {
+            print("Can't assign cell")
+            return UITableViewCell()
+        }
+        cell.mtaId.text = busStops[indexPath.row].mtaId
+        
+        /*
+         guard let cell = tableView.dequeueReusableCell(withIdentifier: "BusLineCell") as? BusLineCell else {
+         return UITableViewCell()
+         }
+         cell.shortName.text = busLines[indexPath.row].shortName
+         cell.longName.text = busLines[indexPath.row].longName
+         */
+        return cell
     }
     
     func getBusStops() {
@@ -71,12 +92,22 @@ class BusLineViewController: UITableViewController {
             guard var lastRefreshed = apiData.currentUnixTime else { return }
             
             guard let discoveryLineData = apiData.busLineData else { return }
-            guard let busLinesEntryData = discoveryLineData.entry else { return }
-            for busStopId in busLinesEntryData.stopIds {
+            
+            // Get mtaIds along route and store in routeGroupings:
+            guard let busLineEntryData = discoveryLineData.entry else { return }
+            for busStopId in busLineEntryData.stopIds {
                 guard let busStopId = busStopId else { return }
-                let busStop = BusStopFromDiscoveryBusStop(busStopId)
-                self.busStops.append(busStop)
+                self.routeGroupings.append(busStopId)
             }
+            
+            // Get all BusStops on route and store in BusStops
+            guard let busLineReferenceData = discoveryLineData.references else { return }
+            for discoveryStop in busLineReferenceData.stops {
+                let busStop = BusStopFromDiscoveryBusStop(discoveryStop)
+                busStops.append(busStop)
+            }
+            
+            
             DispatchQueue.main.async {
                 self.busLineTableView.reloadData()
             }
@@ -89,23 +120,12 @@ class BusLineViewController: UITableViewController {
         }
     }
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "BusStopCell") as? BusStopCell else {
-            print("Can't assign cell")
-            return UITableViewCell()
-        }
-        cell.mtaId.text = busStops[indexPath.row].mtaId
-
-        /*
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "BusLineCell") as? BusLineCell else {
-            return UITableViewCell()
-        }
-        cell.shortName.text = busLines[indexPath.row].shortName
-        cell.longName.text = busLines[indexPath.row].longName
-         */
-        return cell
+    
+    func findBusStopFrom(mtaId: String) -> BusStop {
+        
     }
+    
+
 
     /*
     // Override to support conditional editing of the table view.

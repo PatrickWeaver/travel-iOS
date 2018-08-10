@@ -79,49 +79,7 @@ struct BusDiscoveryLine: Decodable {
     }
 }
 
-// Bus Line
 
-struct BusLineDiscoveryBlob: Decodable {
-    let statusCode: Int?
-    let currentUnixTime: Int? // Time?
-    let busLineData: BusLineData?
-    let statusMessage: String?
-    let version: Int?
-
-    enum CodingKeys: String, CodingKey {
-        case statusCode = "code"
-        case currentUnixTime = "currentTime"
-        case busLineData = "data"
-        case statusMessage = "text"
-        case version
-    }
-}
-
-struct BusLineData: Decodable {
-    let entry: BusLineEntry?
-    let references: BusLineReferences?
-    
-    enum CodingKeys: String, CodingKey {
-        case entry
-        case references
-    }
-}
-
-
-struct BusLineEntry: Decodable {
-    // let polylines: [any?]
-    let routeId: String?
-    let stopGroupings: [StopGroupings?]
-    let stopIds: [String?]
-}
-
-struct BusLineReferences: Decodable {
-    
-}
-
-struct StopGroupings: Decodable {
-    
-}
 
 
 

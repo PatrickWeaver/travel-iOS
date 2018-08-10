@@ -13,7 +13,6 @@ func BusLineFromBusDiscoveryLine(_ discoveryLine: BusDiscoveryLine) -> BusLine {
     return BusLine(id: UUID.init(), agencyId: discoveryLine.agencyId!, color: discoveryLine.color!, description: discoveryLine.description!, lineId: discoveryLine.id!, longName: discoveryLine.longName!, shortName: discoveryLine.shortName!, textColor: discoveryLine.textColor!, scheduleUrl: discoveryLine.url!)
 }
 
-//func BusStopFromDiscoveryBusStop(_ discoveryStop: BusDiscoveryStop) -> BusStop {
-func BusStopFromDiscoveryBusStop(_ discoveryStopId: String) -> BusStop {
-    return BusStop(mtaId: discoveryStopId)
+func BusStopFromDiscoveryBusStop(_ discoveryStop: BusDiscoveryStop) -> BusStop {
+    return BusStop(mtaId: discoveryStop)
 }
