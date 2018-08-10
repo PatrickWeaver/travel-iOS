@@ -1,41 +1,37 @@
 //
-//  BusLineViewController.swift
+//  BusAtStopTableViewController.swift
 //  travel-iOS
 //
-//  Created by Patrick Weaver on 8/6/18.
+//  Created by Patrick Weaver on 8/10/18.
 //  Copyright © 2018 Patrick Weaver. All rights reserved.
 //
 
 import UIKit
 
-class BusLineViewController: UITableViewController {
+class BusAtStopTableViewController: UITableViewController {
     
-    var busLine: BusLine?
-    var busStops = [BusStop]() // Set?
-    var routeGroupings = [String]()
-    var routeStops = [BusStop]()
-
-    @IBOutlet weak var shortName: UILabel!
-    @IBOutlet var busLineTableView: UITableView!
+    var busStop: BusStop?
+    var trackedBusses = [BusAtStop]()
     
+    @IBOutlet weak var busStopIntersection: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        getTrackedBusses()
+        var intersection: String
+        if  busStop != nil {
+            intersection = busStop!.intersectionName
+        } else {
+            intersection = "NO DATA"
+        }
+        busStopIntersection.text = intersection
+        tableView.tableFooterView = UIView()
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
-        getBusStops()
-        var busLineShortName: String
-        if  busLine != nil {
-            busLineShortName = busLine!.shortName
-        } else {
-            busLineShortName = "NO DATA"
-        }
-        shortName.text = busLineShortName
-        tableView.tableFooterView = UIView()
     }
 
     override func didReceiveMemoryWarning() {
@@ -52,30 +48,35 @@ class BusLineViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        print("Number of Stops: \(routeGroupings.count)")
-        return routeGroupings.count
+        return trackedBusses.count
     }
-    
+
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "BusStopCell") as? BusStopCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "BusAtStopCell") as? BusAtStopCell else {
             print("Can't assign cell")
             return UITableViewCell()
         }
-        let stop = routeStops[indexPath.row]
-        cell.stopId.text = stop.stopId
-        cell.intersection.text = stop.intersectionName
+        let trackedBus = trackedBusses[indexPath.row]
+        let metersAway = trackedBus.bus.metersAway ?? 99999999.0
+        cell.metersAway.text = "\(metersAway)"
+
         return cell
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let indexPath = tableView.indexPathForSelectedRow {
-            let selectedRow = indexPath.row
-            if let detailVC = segue.destination as? BusAtStopTableViewController {
-                detailVC.busStop = self.routeStops[selectedRow]
-            }
+    func getTrackedBusses() {
+        guard let busStop = busStop else {
+            return
         }
+        let realTimeUrl = ""
+        //makeApiCall(to: realTimeUrl, then: parseTrackedBusses)
     }
     
+    func parseTrackedBusses(_ resposneData: Data?) -> Void {
+        
+    }
+    
+    
+    /*
     func getBusStops() {
         guard let busLine = busLine else {
             return
@@ -135,13 +136,13 @@ class BusLineViewController: UITableViewController {
             return
         }
     }
-    
-    /*
-    func findBusStopFrom(mtaId: String) -> BusStop {
-        
-    }
     */
-
+    
+    
+    
+    
+    
+    
 
     /*
     // Override to support conditional editing of the table view.

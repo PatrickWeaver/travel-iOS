@@ -10,6 +10,11 @@ import UIKit
 
 class BusLinesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
+    var busLines = [BusLine]()
+    
+    @IBOutlet var tableView: UITableView!
+    
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return busLines.count
     }
@@ -22,11 +27,6 @@ class BusLinesViewController: UIViewController, UITableViewDataSource, UITableVi
         cell.longName.text = busLines[indexPath.row].longName
         return cell
     }
-
-    var busLines = [BusLine]()
-    
-    @IBOutlet var tableView: UITableView!
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()

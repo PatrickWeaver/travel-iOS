@@ -19,6 +19,8 @@
 		CD16E67A2117562300587841 /* ObjectFromJsonConverters.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD16E6792117562300587841 /* ObjectFromJsonConverters.swift */; };
 		CD88B850211D179300778935 /* ApiController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD88B84F211D179300778935 /* ApiController.swift */; };
 		CD88B854211D1FF800778935 /* BusStopCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD88B853211D1FF800778935 /* BusStopCell.swift */; };
+		CD9B308A211E00A6009E3963 /* BusAtStopTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9B3089211E00A6009E3963 /* BusAtStopTableViewController.swift */; };
+		CD9B308E211E00E4009E3963 /* BusAtStopCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9B308D211E00E4009E3963 /* BusAtStopCell.swift */; };
 		CDC7AD6B211917B0008EF500 /* BusLineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC7AD6A211917B0008EF500 /* BusLineViewController.swift */; };
 		CDDF5BCC211759AD00BEEA2B /* BusLineCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDDF5BCB211759AD00BEEA2B /* BusLineCell.swift */; };
 /* End PBXBuildFile section */
@@ -38,6 +40,8 @@
 		CD16E6792117562300587841 /* ObjectFromJsonConverters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectFromJsonConverters.swift; sourceTree = "<group>"; };
 		CD88B84F211D179300778935 /* ApiController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiController.swift; sourceTree = "<group>"; };
 		CD88B853211D1FF800778935 /* BusStopCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusStopCell.swift; sourceTree = "<group>"; };
+		CD9B3089211E00A6009E3963 /* BusAtStopTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusAtStopTableViewController.swift; sourceTree = "<group>"; };
+		CD9B308D211E00E4009E3963 /* BusAtStopCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusAtStopCell.swift; sourceTree = "<group>"; };
 		CDC7AD6A211917B0008EF500 /* BusLineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusLineViewController.swift; sourceTree = "<group>"; };
 		CDDF5BCB211759AD00BEEA2B /* BusLineCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusLineCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -77,12 +81,14 @@
 				CD16E6662117550E00587841 /* Assets.xcassets */,
 				CD16E6712117553C00587841 /* Bus.swift */,
 				CD16E6732117557000587841 /* BusAtStop.swift */,
+				CD9B308D211E00E4009E3963 /* BusAtStopCell.swift */,
+				CD9B3089211E00A6009E3963 /* BusAtStopTableViewController.swift */,
 				CD16E6752117558C00587841 /* BusLine.swift */,
 				CDDF5BCB211759AD00BEEA2B /* BusLineCell.swift */,
 				CD16E6612117550D00587841 /* BusLinesViewController.swift */,
-				CDC7AD6A211917B0008EF500 /* BusLineViewController.swift */,
 				CD16E6772117559F00587841 /* BusStop.swift */,
 				CD88B853211D1FF800778935 /* BusStopCell.swift */,
+				CDC7AD6A211917B0008EF500 /* BusLineViewController.swift */,
 				CD16E66B2117550E00587841 /* Info.plist */,
 				CD16E6682117550E00587841 /* LaunchScreen.storyboard */,
 				CD16E6632117550D00587841 /* Main.storyboard */,
@@ -170,9 +176,11 @@
 				CD16E6722117553C00587841 /* Bus.swift in Sources */,
 				CD16E6622117550D00587841 /* BusLinesViewController.swift in Sources */,
 				CD88B854211D1FF800778935 /* BusStopCell.swift in Sources */,
+				CD9B308E211E00E4009E3963 /* BusAtStopCell.swift in Sources */,
 				CD16E6602117550D00587841 /* AppDelegate.swift in Sources */,
 				CDDF5BCC211759AD00BEEA2B /* BusLineCell.swift in Sources */,
 				CD16E6742117557000587841 /* BusAtStop.swift in Sources */,
+				CD9B308A211E00A6009E3963 /* BusAtStopTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
