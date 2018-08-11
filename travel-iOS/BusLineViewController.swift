@@ -71,6 +71,7 @@ class BusLineViewController: UITableViewController {
         if let indexPath = tableView.indexPathForSelectedRow {
             let selectedRow = indexPath.row
             if let detailVC = segue.destination as? BusAtStopTableViewController {
+                detailVC.busLine = self.busLine
                 detailVC.busStop = self.routeStops[selectedRow]
             }
         }
@@ -120,10 +121,7 @@ class BusLineViewController: UITableViewController {
                     }
                 }
             }
-            
-            
-            
-            
+
             DispatchQueue.main.async {
                 self.busLineTableView.reloadData()
             }

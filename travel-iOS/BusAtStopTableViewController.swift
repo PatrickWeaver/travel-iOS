@@ -10,10 +10,12 @@ import UIKit
 
 class BusAtStopTableViewController: UITableViewController {
     
+    var busLine: BusLine?
     var busStop: BusStop?
     var trackedBusses = [BusAtStop]()
     
     @IBOutlet weak var busStopIntersection: UILabel!
+    @IBOutlet var busAtStopTableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,90 +59,62 @@ class BusAtStopTableViewController: UITableViewController {
             return UITableViewCell()
         }
         let trackedBus = trackedBusses[indexPath.row]
-        let metersAway = trackedBus.bus.metersAway ?? 99999999.0
-        cell.metersAway.text = "\(metersAway)"
+        let metersAway = trackedBus.metersAway
+        cell.metersAway.text = "\(metersAway) meters away"
 
         return cell
     }
     
     func getTrackedBusses() {
-        guard let busStop = busStop else {
+        guard let busStop = busStop, let busLine = busLine else {
             return
         }
-        let realTimeUrl = ""
-        //makeApiCall(to: realTimeUrl, then: parseTrackedBusses)
+        let realTimeUrl = "https://mta-api.glitch.me/api/bus/\(busLine.shortName)/\(busStop.stopId)"
+        print(realTimeUrl)
+        makeApiCall(to: realTimeUrl, then: parseTrackedBusses)
     }
     
-    func parseTrackedBusses(_ resposneData: Data?) -> Void {
-        
-    }
-    
-    
-    /*
-    func getBusStops() {
-        guard let busLine = busLine else {
-            return
-        }
-        let discoveryUrl = "https://mta-api.glitch.me/api/bus/\(busLine.shortName)"
-        makeApiCall(to: discoveryUrl, then: parseBusStops)
-    }
-    
-    func parseBusStops(_ responseData: Data?) -> Void {
+    func parseTrackedBusses(_ responseData: Data?) -> Void {
         guard let responseData = responseData else {
             return
         }
         
         do {
-            let apiData = try JSONDecoder().decode(BusLineDiscoveryBlob.self, from: responseData)
+            let apiData = try JSONDecoder().decode(BusDataBlob.self, from: responseData)
             //print(apiData)
-            guard var lastRefreshed = apiData.currentUnixTime else { return }
-            
-            guard let discoveryLineData = apiData.busLineData else { return }
-            
-            // Get mtaIds along route and store in routeGroupings:
-            guard let busLineEntryData = discoveryLineData.entry else { return }
-            for busStopId in busLineEntryData.stopIds {
-                guard let busStopId = busStopId else { return }
-                routeGroupings.append(busStopId)
-            }
-            
-            // Get all BusStops on route and store in BusStops
-            guard let busLineReferenceData = discoveryLineData.references else { return }
-            for discoveryStop in busLineReferenceData.stops {
-                guard let discoveryStop = discoveryStop else { return }
-                let busStop = BusStopFromDiscoveryBusStop(discoveryStop)
-                busStops.append(busStop)
-            }
-            
-            // Find each BusStop from the ordered routeGroupings
-            for stopId in routeGroupings {
-                for stop in busStops {
-                    if stopId == stop.mtaId {
-                        routeStops.append(stop)
-                        break
+            guard let jsonSiri = apiData.jsonSiri else { return }
+            guard let serviceDelivery = jsonSiri.serviceDelivery else { return }
+            guard let lastRefreshed = serviceDelivery.responseTimestamp else { return } // Need to parse this other API returns Unix Time
+            if (serviceDelivery.stopMonitoringDelivery.count == 1) {
+                let stopMonitoringDelivery = serviceDelivery.stopMonitoringDelivery[0]
+                guard let validUntil = stopMonitoringDelivery.validUntil else { return }
+                let monitoredStopVisits = stopMonitoringDelivery.monitoredStopVisits
+                for visit in monitoredStopVisits {
+                    
+                    guard let monitoredVehicleJourney = visit.monitoredVehicleJourney else { return }
+                    // Do something with all this bus data
+                    // Maybe add BusJourney object
+                    guard let monitoredCall = monitoredVehicleJourney.monitoredCall else {
+                        return
                     }
+                    
+                    let busAtStop = BusAtStopFromMonitoredCall(monitoredCall)
+                    trackedBusses.append(busAtStop)
                 }
+                
+                DispatchQueue.main.async {
+                    self.busAtStopTableView.reloadData()
+                }
+                
+            } else {
+                print("Stop Monitoring Delivery not 1 \(serviceDelivery.stopMonitoringDelivery.count)")
             }
-            
-            
-            
-            
-            DispatchQueue.main.async {
-                self.busLineTableView.reloadData()
-            }
-            
-            return
         } catch {
             print("Catch: Line")
             print(error)
             return
         }
     }
-    */
-    
-    
-    
-    
     
     
 

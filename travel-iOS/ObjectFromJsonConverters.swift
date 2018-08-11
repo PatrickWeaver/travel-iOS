@@ -35,3 +35,17 @@ func BusStopFromDiscoveryBusStop(_ discoveryStop: BusDiscoveryStop) -> BusStop {
         travelDirection: discoveryStop.direction ?? ""
     )
 }
+
+func BusAtStopFromMonitoredCall(_ monitoredCall: MonitoredCall) -> BusAtStop {
+    
+    let arrival = Arrival(
+        expectedArrival: dateFromDatetimeString(dt: monitoredCall.expectedArrivalTime)
+    )
+    var arrivals = [arrival]
+    
+    return BusAtStop(
+        metersAway: monitoredCall.metersAway ?? 999999999,
+        stopsAway: monitoredCall.stopsAway ?? 99999,
+        arrivals: arrivals
+    )
+}

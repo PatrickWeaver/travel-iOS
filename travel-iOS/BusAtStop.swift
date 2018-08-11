@@ -9,24 +9,28 @@
 import Foundation
 
 struct BusAtStop {
-    let bus: Bus
-    let stop: BusStop
-    var expectedArrivals: [ExpectedArrival]
-    var actualArrival: Date
+    //let bus: Bus
+    //let stop: BusStop
+    var metersAway: Int
+    var stopsAway: Int
+    var arrivals: [Arrival]
+    
     
 }
 
-struct ExpectedArrival {
-    let timestamp: Date
-    let arrivalTime: Date
-    var accuracyInSeconds: Double
+struct Arrival {
+    //let timestamp: Date?
+    //let arrivalTime: Date?
+    //var actualArrival: Date?
+    //var accuracyInSeconds: Double
+    var expectedArrival: Date?
 }
 
 
 /* JSON Parsing */
 
 struct BusDataBlob: Decodable {
-    let jsonSiri: JsonSiri
+    let jsonSiri: JsonSiri?
     
     enum CodingKeys: String, CodingKey {
         case jsonSiri = "Siri"
@@ -35,7 +39,7 @@ struct BusDataBlob: Decodable {
 
 
 struct JsonSiri: Decodable {
-    let serviceDelivery: ServiceDelivery
+    let serviceDelivery: ServiceDelivery?
     
     enum CodingKeys: String, CodingKey {
         case serviceDelivery = "ServiceDelivery"
@@ -43,19 +47,21 @@ struct JsonSiri: Decodable {
 }
 
 struct ServiceDelivery: Decodable {
-    let responseTimestamp: String // Datetime
+    let responseTimestamp: String? // Datetime
     let stopMonitoringDelivery: [StopMonitoringDelivery]
+    //let situationExchangeDelivery: [SituationExchangeDelivery]
     
     enum CodingKeys: String, CodingKey {
         case responseTimestamp = "ResponseTimestamp"
         case stopMonitoringDelivery = "StopMonitoringDelivery"
+        //case situationExchangeDelivery = "SituationExchangeDelivery"
     }
 }
 
 struct StopMonitoringDelivery: Decodable {
-    let responseTimestamp: String // Datetime
+    let responseTimestamp: String? // Datetime
     let monitoredStopVisits: [MonitoredStopVisit]
-    let validUntil: String // Datetime
+    let validUntil: String? // Datetime
     
     enum CodingKeys: String, CodingKey {
         case responseTimestamp = "ResponseTimestamp"
@@ -65,8 +71,8 @@ struct StopMonitoringDelivery: Decodable {
 }
 
 struct MonitoredStopVisit: Decodable {
-    let monitoredVehicleJourney: MonitoredVehicleJourney
-    let recordedAtTime: String // Datetime
+    let monitoredVehicleJourney: MonitoredVehicleJourney?
+    let recordedAtTime: String? // Datetime
     
     enum CodingKeys: String, CodingKey {
         case monitoredVehicleJourney = "MonitoredVehicleJourney"
@@ -75,23 +81,23 @@ struct MonitoredStopVisit: Decodable {
 }
 
 struct MonitoredVehicleJourney: Decodable {
-    let lineRef: String
-    var directionString: String
+    let lineRef: String?
+    var directionString: String?
     // let FramedVehicleJourney
-    let journeyPattern: String
-    let lineName: String
-    let lineOperator: String
-    let originId: String // BusStop.id
-    let destinationId: String // BusStop.id
-    let destinationName: String // BusStop.name
+    let journeyPattern: String?
+    let lineName: [String]
+    let lineOperator: String?
+    let originId: String? // BusStop.id
+    let destinationId: String? // BusStop.id
+    let destinationName: [String] // BusStop.name
     //let situations: // Not sure what this is used for
-    var monitored: Bool
-    var location: VehicleLocation // Location
-    var bearing: Double
-    var progressRate: String // ProgressRate
-    let blockRef: String
-    let vehicleId: String // Vehicle
-    let monitoredCall: MonitoredCall
+    var monitored: Bool?
+    var location: VehicleLocation? // Location
+    var bearing: Double?
+    var progressRate: String? // ProgressRate
+    let blockRef: String?
+    let vehicleId: String? // Vehicle
+    let monitoredCall: MonitoredCall?
     //let onwardCalls: OnwardCall
     
     enum CodingKeys: String, CodingKey {
@@ -117,8 +123,8 @@ struct MonitoredVehicleJourney: Decodable {
 }
 
 struct VehicleLocation: Decodable {
-    var lat: Double
-    var long: Double
+    var lat: Double?
+    var long: Double?
     
     enum CodingKeys: String, CodingKey {
         case lat = "Latitude"
@@ -131,41 +137,23 @@ struct MonitoredCall: Decodable {
     var timeUntilArrivalInSeconds: Int? {
         return intervalFromDateTime(dt: dateFromDatetimeString(dt: expectedArrivalTime))
     }
+    let arrivalProximityText: String?
     let expectedDepartureTime: String? //Datetime
-    let extensions: MonitoredCallExtension?
+    let metersAway: Int?
+    let stopsAway: Int?
     let stopPointId: String?
     let visitNumber: Int?
-    let stopPointName: String?
+    let stopPointName: [String]
     
     enum CodingKeys: String, CodingKey {
         case expectedArrivalTime = "ExpectedArrivalTime"
+        case arrivalProximityText = "ArrivalProximityTest"
         case expectedDepartureTime = "ExpectedDepartureTime"
-        case extensions = "Extensions"
+        case metersAway = "DistanceFromStop"
+        case stopsAway = "NumberOfStopsAway"
         case stopPointId = "StopPointRef"
         case visitNumber = "VisitNumber"
         case stopPointName = "StopPointName"
-    }
-}
-
-struct MonitoredCallExtension: Decodable {
-    let distances: MonitoredCallDistances
-    
-    enum CodingKeys: String, CodingKey {
-        case distances = "Distances"
-    }
-}
-
-struct MonitoredCallDistances: Decodable {
-    let descriptive: String
-    let metersAway: Double
-    let stopsAway: Int
-    let metersAlongRoute: Double
-    
-    enum CodingKeys: String, CodingKey {
-        case descriptive = "PresentableDistance"
-        case metersAway = "DistanceFromCall"
-        case stopsAway = "StopsFromCall"
-        case metersAlongRoute = "CallDistanceAlongRoute"
     }
 }
 

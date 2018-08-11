@@ -218,6 +218,7 @@
                         </connections>
                     </tableView>
                     <connections>
+                        <outlet property="busAtStopTableView" destination="ROs-j7-YiS" id="Prg-gx-MA4"/>
                         <outlet property="busStopIntersection" destination="uNY-Dg-YII" id="1Ix-AN-BiH"/>
                     </connections>
                 </tableViewController>
