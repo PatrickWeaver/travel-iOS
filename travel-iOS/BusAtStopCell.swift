@@ -10,7 +10,10 @@ import UIKit
 
 class BusAtStopCell: UITableViewCell {
 
+    @IBOutlet weak var arrivalProximityText: UILabel!
+    @IBOutlet weak var countdown: UILabel!
     @IBOutlet weak var metersAway: UILabel!
+    @IBOutlet weak var stopsAway: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

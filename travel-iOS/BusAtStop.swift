@@ -11,11 +11,24 @@ import Foundation
 struct BusAtStop {
     //let bus: Bus
     //let stop: BusStop
+    var arrivalProximityText: String
     var metersAway: Int
     var stopsAway: Int
     var arrivals: [Arrival]
-    
-    
+    var secondsAway: Int? {
+        if arrivals.count > 0 {
+            guard let arrival = arrivals.last else {
+                return 9999999999
+            }
+            let expectedArrival = arrival.expectedArrival
+            return intervalFromDateTime(dt: expectedArrival)
+        } else {
+            return 9999999999
+        }
+    }
+    var arrivalCountdown: String {
+        return countdownFromTimeInSeconds(timeUntil: secondsAway)
+    }
 }
 
 struct Arrival {
@@ -147,7 +160,7 @@ struct MonitoredCall: Decodable {
     
     enum CodingKeys: String, CodingKey {
         case expectedArrivalTime = "ExpectedArrivalTime"
-        case arrivalProximityText = "ArrivalProximityTest"
+        case arrivalProximityText = "ArrivalProximityText"
         case expectedDepartureTime = "ExpectedDepartureTime"
         case metersAway = "DistanceFromStop"
         case stopsAway = "NumberOfStopsAway"

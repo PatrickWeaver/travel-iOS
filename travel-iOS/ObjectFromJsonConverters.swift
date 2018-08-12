@@ -41,9 +41,10 @@ func BusAtStopFromMonitoredCall(_ monitoredCall: MonitoredCall) -> BusAtStop {
     let arrival = Arrival(
         expectedArrival: dateFromDatetimeString(dt: monitoredCall.expectedArrivalTime)
     )
-    var arrivals = [arrival]
+    let arrivals = [arrival]
     
     return BusAtStop(
+        arrivalProximityText: monitoredCall.arrivalProximityText ?? "Unknown",
         metersAway: monitoredCall.metersAway ?? 999999999,
         stopsAway: monitoredCall.stopsAway ?? 99999,
         arrivals: arrivals

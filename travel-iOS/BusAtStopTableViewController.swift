@@ -59,11 +59,18 @@ class BusAtStopTableViewController: UITableViewController {
             return UITableViewCell()
         }
         let trackedBus = trackedBusses[indexPath.row]
-        let metersAway = trackedBus.metersAway
-        cell.metersAway.text = "\(metersAway) meters away"
+        cell.arrivalProximityText.text = "\(trackedBus.arrivalProximityText)"
+        cell.countdown.text = "\(trackedBus.arrivalCountdown)"
+        cell.metersAway.text = "\(trackedBus.metersAway) meters away"
+        cell.stopsAway.text = "\(trackedBus.stopsAway) stops away"
 
         return cell
     }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 200
+    }
+    
     
     func getTrackedBusses() {
         guard let busStop = busStop, let busLine = busLine else {
@@ -97,9 +104,11 @@ class BusAtStopTableViewController: UITableViewController {
                     guard let monitoredCall = monitoredVehicleJourney.monitoredCall else {
                         return
                     }
-                    
+                    print(monitoredCall)
                     let busAtStop = BusAtStopFromMonitoredCall(monitoredCall)
+                    print(busAtStop)
                     trackedBusses.append(busAtStop)
+                    print("")
                 }
                 
                 DispatchQueue.main.async {
