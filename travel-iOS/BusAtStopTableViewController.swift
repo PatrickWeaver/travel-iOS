@@ -112,6 +112,7 @@ class BusAtStopTableViewController: UITableViewController {
                 }
                 
                 DispatchQueue.main.async {
+                    self.runBusCountdownTimer()
                     self.busAtStopTableView.reloadData()
                 }
                 
@@ -123,6 +124,21 @@ class BusAtStopTableViewController: UITableViewController {
             print(error)
             return
         }
+    }
+    
+    var isTimerRunning = false
+    func runBusCountdownTimer() {
+        if (!isTimerRunning){
+            Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { _ in
+                self.updateTimer()
+            })
+            //Timer.scheduledTimer(timeInterval: 1, target: self, selector: (#selector(ViewController.updateTimer)), userInfo: nil, repeats: true)
+            isTimerRunning = true
+        }
+    }
+    
+    func updateTimer() {
+        self.busAtStopTableView.reloadData()
     }
     
     
