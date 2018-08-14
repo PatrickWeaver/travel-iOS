@@ -13,6 +13,9 @@ struct BusAtStop {
     //let stop: BusStop
     var arrivalProximityText: String
     var metersAway: Int
+    var milesAway: Double {
+        return Double(metersAway) * 0.000621371
+    }
     var stopsAway: Int
     var arrivals: [Arrival]
     var secondsAway: Int? {
@@ -26,7 +29,7 @@ struct BusAtStop {
             return 9999999999
         }
     }
-    var arrivalCountdown: String {
+    var arrivalCountdown: String? {
         return countdownFromTimeInSeconds(timeUntil: secondsAway)
     }
 }

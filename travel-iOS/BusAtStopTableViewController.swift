@@ -59,10 +59,30 @@ class BusAtStopTableViewController: UITableViewController {
             return UITableViewCell()
         }
         let trackedBus = trackedBusses[indexPath.row]
-        cell.arrivalProximityText.text = "\(trackedBus.arrivalProximityText)"
-        cell.countdown.text = "\(trackedBus.arrivalCountdown)"
-        cell.metersAway.text = "\(trackedBus.metersAway) meters away"
-        cell.stopsAway.text = "\(trackedBus.stopsAway) stops away"
+        
+        
+        var countdown = ""
+        if (trackedBus.arrivalCountdown != nil) {
+            countdown = "\(trackedBus.arrivalCountdown!)\n"
+        }
+        
+        var milesAway = ""
+        if trackedBus.arrivalProximityText.range(of: "miles") == nil {
+            milesAway = "\(((trackedBus.milesAway * 10).rounded(.up)/10)) miles away\n"
+        }
+        
+        var stopsAway = ""
+        if trackedBus.arrivalProximityText.range(of: "stop") == nil {
+            if trackedBus.stopsAway != 1 {
+                stopsAway = "\(trackedBus.stopsAway) stops away"
+            } else {
+                stopsAway = "\(trackedBus.stopsAway) stop away"
+            }
+        }
+        
+        let arrivalProximityText = "\(trackedBus.arrivalProximityText)\n\(countdown)\(milesAway)\(stopsAway)"
+        
+        cell.arrivalProximityText.text = arrivalProximityText
 
         return cell
     }

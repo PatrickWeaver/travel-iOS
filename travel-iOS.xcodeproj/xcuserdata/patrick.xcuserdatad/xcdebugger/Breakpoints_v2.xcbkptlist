@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "travel-iOS/BusAtStop.swift"
-            timestampString = "555792094.279523"
+            timestampString = "555902096.222778"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "103"
-            endingLineNumber = "103"
+            startingLineNumber = "106"
+            endingLineNumber = "106"
             landmarkName = "MonitoredVehicleJourney"
             landmarkType = "14">
          </BreakpointContent>

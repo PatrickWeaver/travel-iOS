@@ -8,9 +8,9 @@
 
 import Foundation
 
-func countdownFromTimeInSeconds(timeUntil: Int?) -> String {
+func countdownFromTimeInSeconds(timeUntil: Int?) -> String? {
     guard let timeUntil = timeUntil else {
-        return ""
+        return nil
     }
     let intInterval = Int(timeUntil)
     if intInterval < 1 {
