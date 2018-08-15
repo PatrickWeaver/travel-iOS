@@ -11,9 +11,9 @@ import UIKit
 class BusLinesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     var busLines = [BusLine]()
+    var bx = [BusLine]()
     
     @IBOutlet var tableView: UITableView!
-    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return busLines.count
@@ -74,7 +74,11 @@ class BusLinesViewController: UIViewController, UITableViewDataSource, UITableVi
             for busDiscoveryLine in discoveryData.list {
                 guard let busDiscoveryLine = busDiscoveryLine else { return }
                 let busLine = BusLineFromBusDiscoveryLine(busDiscoveryLine)
-                self.busLines.append(busLine)
+                if busLine.shortName.range(of: "Bx") != nil {
+                    self.bx.append(busLine)
+                } else {
+                    self.busLines.append(busLine)
+                }
             }
             
             self.busLines.sort(by: { $0.shortName > $1.shortName })
