@@ -76,6 +76,9 @@ class BusLinesViewController: UIViewController, UITableViewDataSource, UITableVi
                 let busLine = BusLineFromBusDiscoveryLine(busDiscoveryLine)
                 self.busLines.append(busLine)
             }
+            
+            self.busLines.sort(by: { $0.shortName > $1.shortName })
+            
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }
