@@ -15,7 +15,7 @@ struct BusLine {
     let description: String
     let lineId: String
     let longName: String
-    let shortName: String
+    var shortName: String // let
     let textColor: String
     let scheduleUrl: String
     //let variants: [BusLineVariant]
