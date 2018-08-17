@@ -17,6 +17,14 @@ class BusAtStopTableViewController: UITableViewController {
     @IBOutlet weak var busStopIntersection: UILabel!
     @IBOutlet var busAtStopTableView: UITableView!
     
+    @IBAction func refreshButton(_ sender: Any) {
+        getTrackedBusses()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        navigationItem.title = "Next Arrivals"
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         getTrackedBusses()
@@ -93,6 +101,7 @@ class BusAtStopTableViewController: UITableViewController {
     
     
     func getTrackedBusses() {
+        trackedBusses = [BusAtStop]()
         guard let busStop = busStop, let busLine = busLine else {
             return
         }

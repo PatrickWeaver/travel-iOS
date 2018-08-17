@@ -18,6 +18,9 @@ class BusLineViewController: UITableViewController {
     @IBOutlet weak var shortName: UILabel!
     @IBOutlet var busLineTableView: UITableView!
     
+    override func viewWillAppear(_ animated: Bool) {
+        navigationItem.title = "Bus Stops"
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,6 +52,13 @@ class BusLineViewController: UITableViewController {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
+    
+    /*
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return "Bus Stops"
+    }
+   */
+    
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
