@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CoreLocation
 
 func BusLineFromBusDiscoveryLine(_ discoveryLine: BusDiscoveryLine) -> BusLine {
 
@@ -23,13 +24,22 @@ func BusLineFromBusDiscoveryLine(_ discoveryLine: BusDiscoveryLine) -> BusLine {
     )
 }
 
-func BusStopFromDiscoveryBusStop(_ discoveryStop: BusDiscoveryStop) -> BusStop {
+func BusStopFromDiscoveryBusStop(_ discoveryStop: BusDiscoveryStop, _ location: CLLocation) -> BusStop {
+    
+    print("^ ^ ^ ^ ^ ")
+    print(location)
+    
+    let latitude = discoveryStop.lat ?? 0.0
+    let longitude = discoveryStop.long ?? 0.0
+    let stopLocation = CLLocation(latitude: latitude, longitude: longitude)
+    let distance = location.distance(from: stopLocation)
     
     return BusStop(
         stopId: discoveryStop.stopId ?? "0",
         mtaId: discoveryStop.mtaId ?? "MTA_0",
-        latitude: discoveryStop.lat ?? 0.0,
-        longitude: discoveryStop.long ?? 0.0,
+        latitude: latitude,
+        longitude: longitude,
+        distance: distance,
         wheelchairBoarding: discoveryStop.wheelchairBoarding ?? "UNKNOWN",
         intersectionName: discoveryStop.intersectionName ?? "",
         travelDirection: discoveryStop.direction ?? ""

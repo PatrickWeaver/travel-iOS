@@ -106,7 +106,6 @@ class BusAtStopTableViewController: UITableViewController {
             return
         }
         let realTimeUrl = "https://mta-api.glitch.me/api/bus/\(busLine.shortName)/\(busStop.stopId)"
-        print(realTimeUrl)
         makeApiCall(to: realTimeUrl, then: parseTrackedBusses)
     }
     
@@ -133,11 +132,11 @@ class BusAtStopTableViewController: UITableViewController {
                     guard let monitoredCall = monitoredVehicleJourney.monitoredCall else {
                         return
                     }
-                    print(monitoredCall)
+                    //print(monitoredCall)
                     let busAtStop = BusAtStopFromMonitoredCall(monitoredCall)
-                    print(busAtStop)
+                    //print(busAtStop)
                     trackedBusses.append(busAtStop)
-                    print("")
+                    //print("")
                 }
                 
                 DispatchQueue.main.async {

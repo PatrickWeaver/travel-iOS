@@ -13,6 +13,10 @@ struct BusStop {
     let mtaId: String
     let latitude: Double
     let longitude: Double
+    var distance: Double
+    var milesAway: Double {
+        return distance * 0.000621371
+    }
     //let inUse: Bool
     let wheelchairBoarding: String // Bool
     //let routes: [Route]

@@ -7,14 +7,35 @@
 //
 
 import UIKit
+import CoreLocation
 
-class BusLineViewController: UITableViewController {
+class BusLineViewController: UITableViewController, CLLocationManagerDelegate {
+    
+    let locationManager = CLLocationManager()
+    func startReceivingLocationChanges() {
+        let authorizationStatus = CLLocationManager.authorizationStatus()
+        if authorizationStatus != .authorizedWhenInUse && authorizationStatus != .authorizedAlways {
+            // User has not authorized access to location information.
+            return
+        }
+        // Do not start services that aren't available.
+        if !CLLocationManager.locationServicesEnabled() {
+            // Location services is not available.
+            return
+        }
+        // Configure and start the service.
+        locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+        locationManager.distanceFilter = 20.0  // In meters.
+        locationManager.delegate = self
+        locationManager.startUpdatingLocation()
+    }
     
     var busLine: BusLine?
     var busStops = [BusStop]()
     var routeGroupings = [[String]]()
     var routeGroupingNames = [String]()
     var routeStops = [[BusStop]]()
+    var location = CLLocation(latitude: 0.0, longitude: 0.0)
 
     @IBOutlet weak var shortName: UILabel!
     @IBOutlet var busLineTableView: UITableView!
@@ -31,6 +52,13 @@ class BusLineViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        
+        //self.locationManager.requestWhenInUseAuthorization()
+        startReceivingLocationChanges()
+        location = locationManager.location!
+        print("* * * * * * *")
+        print(location.coordinate)
+        
         getBusStops()
         var busLineShortName: String
         if  busLine != nil {
@@ -62,7 +90,6 @@ class BusLineViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        print("Number of Stops: \(routeGroupings.count)")
         return routeStops[section].count
     }
     
@@ -74,7 +101,17 @@ class BusLineViewController: UITableViewController {
         let stop = routeStops[indexPath.section][indexPath.row]
         cell.stopId.text = stop.stopId
         cell.intersection.text = stop.intersectionName
+        //print("\(stop.distance) meters / \(stop.milesAway) miles")
+        if (stop.milesAway < 0.2) {
+            cell.stopDistance.text = "\(((stop.milesAway * 100).rounded(.up)/100)) miles away"
+        } else {
+            cell.stopDistance.text = "\(((stop.milesAway * 10).rounded(.up)/10)) miles away"
+        }
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 130
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -134,7 +171,7 @@ class BusLineViewController: UITableViewController {
             guard let busLineReferenceData = discoveryLineData.references else { return }
             for discoveryStop in busLineReferenceData.stops {
                 guard let discoveryStop = discoveryStop else { return }
-                let busStop = BusStopFromDiscoveryBusStop(discoveryStop)
+                let busStop = BusStopFromDiscoveryBusStop(discoveryStop, location)
                 busStops.append(busStop)
             }
             
@@ -148,7 +185,6 @@ class BusLineViewController: UITableViewController {
                             break
                         }
                     }
-                    print(busStopArray.count)
                 }
                 routeStops.append(busStopArray)
             }
