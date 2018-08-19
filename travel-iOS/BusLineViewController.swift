@@ -11,9 +11,10 @@ import UIKit
 class BusLineViewController: UITableViewController {
     
     var busLine: BusLine?
-    var busStops = [BusStop]() // Set?
-    var routeGroupings = [String]()
-    var routeStops = [BusStop]()
+    var busStops = [BusStop]()
+    var routeGroupings = [[String]]()
+    var routeGroupingNames = [String]()
+    var routeStops = [[BusStop]]()
 
     @IBOutlet weak var shortName: UILabel!
     @IBOutlet var busLineTableView: UITableView!
@@ -50,20 +51,19 @@ class BusLineViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 1
+        return routeStops.count
     }
     
-    /*
+    
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "Bus Stops"
+        return routeGroupingNames[section]
     }
-   */
     
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         print("Number of Stops: \(routeGroupings.count)")
-        return routeGroupings.count
+        return routeStops[section].count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -71,7 +71,7 @@ class BusLineViewController: UITableViewController {
             print("Can't assign cell")
             return UITableViewCell()
         }
-        let stop = routeStops[indexPath.row]
+        let stop = routeStops[indexPath.section][indexPath.row]
         cell.stopId.text = stop.stopId
         cell.intersection.text = stop.intersectionName
         return cell
@@ -79,10 +79,11 @@ class BusLineViewController: UITableViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let indexPath = tableView.indexPathForSelectedRow {
+            let rowSection = indexPath.section
             let selectedRow = indexPath.row
             if let detailVC = segue.destination as? BusAtStopTableViewController {
                 detailVC.busLine = self.busLine
-                detailVC.busStop = self.routeStops[selectedRow]
+                detailVC.busStop = self.routeStops[rowSection][selectedRow]
             }
         }
     }
@@ -109,10 +110,25 @@ class BusLineViewController: UITableViewController {
             
             // Get mtaIds along route and store in routeGroupings:
             guard let busLineEntryData = discoveryLineData.entry else { return }
-            for busStopId in busLineEntryData.stopIds {
-                guard let busStopId = busStopId else { return }
-                routeGroupings.append(busStopId)
+            
+            guard let busLineStopGroupings = busLineEntryData.stopGroupings[0] else { return }
+            
+            for busLineStopGrouping in busLineStopGroupings.stopGroups {
+                var groupingName = ""
+                if ((busLineStopGrouping.name) != nil) {
+                    groupingName = busLineStopGrouping.name!.name ?? ""
+                }
+                routeGroupingNames.append(groupingName)
+                
+                var busStopIdArray = [String]()
+                for busStopId in busLineStopGrouping.stopIds {
+                    if busStopId != nil  {
+                        busStopIdArray.append(busStopId!)
+                    }
+                }
+                routeGroupings.append(busStopIdArray)
             }
+            
             
             // Get all BusStops on route and store in BusStops
             guard let busLineReferenceData = discoveryLineData.references else { return }
@@ -122,14 +138,19 @@ class BusLineViewController: UITableViewController {
                 busStops.append(busStop)
             }
             
-            // Find each BusStop from the ordered routeGroupings
-            for stopId in routeGroupings {
-                for stop in busStops {
-                    if stopId == stop.mtaId {
-                        routeStops.append(stop)
-                        break
+            // Find each BusStop from the ordered routeGroupings Groups
+            for stopGroup in routeGroupings {
+                var busStopArray = [BusStop]()
+                for stopId in stopGroup {
+                    for stop in busStops {
+                        if stopId == stop.mtaId {
+                            busStopArray.append(stop)
+                            break
+                        }
                     }
+                    print(busStopArray.count)
                 }
+                routeStops.append(busStopArray)
             }
 
             DispatchQueue.main.async {

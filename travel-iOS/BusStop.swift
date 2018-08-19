@@ -62,7 +62,43 @@ struct BusLineEntry: Decodable {
 }
 
 struct StopGroupings: Decodable {
+    let ordered: Bool?
+    // This is not really an array of StopGroups, there is a "type"
+    // property at the end of the array, not sure how to parse that.
+    let stopGroups: [StopGroup]
     
+    enum CodingKeys: String, CodingKey {
+        case ordered
+        case stopGroups
+    }
+}
+
+struct StopGroup: Decodable {
+    let id: String?
+    let name: StopGroupingName?
+    // let polylines: [String]
+    let stopIds: [String?]
+    // let subGroups: [Sting]
+    
+    enum CodingKeys: String, CodingKey {
+        case id
+        case name
+        // case polylines
+        case stopIds
+        // case subGroups
+    }
+}
+
+struct StopGroupingName: Decodable {
+    let name: String?
+    let names: [String]?
+    let type: String?
+    
+    enum CodingKeys: String, CodingKey {
+        case name
+        case names
+        case type
+    }
 }
 
 struct BusLineReferences: Decodable {
