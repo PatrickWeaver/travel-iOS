@@ -129,7 +129,7 @@ class BusLineViewController: UITableViewController, CLLocationManagerDelegate {
         guard let busLine = busLine else {
             return
         }
-        let discoveryUrl = "https://mta-api.glitch.me/api/bus/\(busLine.shortName)"
+        let discoveryUrl = "https://mta-api.glitch.me/api/bus/routes/\(busLine.shortName)"
         makeApiCall(to: discoveryUrl, then: parseBusStops)
     }
     

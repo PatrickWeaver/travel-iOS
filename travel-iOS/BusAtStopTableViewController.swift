@@ -105,7 +105,7 @@ class BusAtStopTableViewController: UITableViewController {
         guard let busStop = busStop, let busLine = busLine else {
             return
         }
-        let realTimeUrl = "https://mta-api.glitch.me/api/bus/\(busLine.shortName)/\(busStop.stopId)"
+        let realTimeUrl = "https://mta-api.glitch.me/api/bus/routes/\(busLine.shortName)/\(busStop.stopId)"
         makeApiCall(to: realTimeUrl, then: parseTrackedBusses)
     }
     

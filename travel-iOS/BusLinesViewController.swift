@@ -10,14 +10,10 @@ import UIKit
 
 class BusLinesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
+    var nearbyStops = [BusStop]()
     var busLines = [[BusLine]]()
-    //var b = [BusLine]()
-    //var bx = [BusLine]()
-    //var m = [BusLine]()
-    //var q = [BusLine]()
-    //var s = [BusLine]()
-    //var x = [BusLine]()
-    //var sections = [[BusLine]]()
+    
+    var tableData = [[[String]]]()
     
     @IBOutlet var tableView: UITableView!
     
@@ -35,16 +31,18 @@ class BusLinesViewController: UIViewController, UITableViewDataSource, UITableVi
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section {
         case 0:
-            return "Brooklyn"
+            return "Nearby Stops"
         case 1:
-            return "The Bronx"
+            return "Brooklyn"
         case 2:
-            return "Manhattan"
+            return "The Bronx"
         case 3:
-            return "Queens"
+            return "Manhattan"
         case 4:
-            return "Staten Island"
+            return "Queens"
         case 5:
+            return "Staten Island"
+        case 6:
             return "Express"
         default:
             return "Other"
@@ -52,15 +50,17 @@ class BusLinesViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return busLines[section].count
+        return tableData[section].count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "BusLineCell") as? BusLineCell else {
             return UITableViewCell()
         }
-        cell.shortName.text = busLines[indexPath.section][indexPath.row].shortName
-        cell.longName.text = busLines[indexPath.section][indexPath.row].longName
+        cell.shortName.text = tableData[indexPath.section][indexPath.row][0]
+        //cell.shortName.text = busLines[indexPath.section][indexPath.row].shortName
+        cell.longName.text = tableData[indexPath.section][indexPath.row][1]
+        //cell.longName.text = busLines[indexPath.section][indexPath.row].longName
         return cell
     }
     
@@ -151,6 +151,21 @@ class BusLinesViewController: UIViewController, UITableViewDataSource, UITableVi
                 }
                 return lineNumber
             }
+            
+            // Add nearby stops here
+            var nbs = [[String]]()
+            tableData.append(nbs)
+            
+            for busLineGroup in busLines {
+                var groupArray = [[String]]()
+                for busLine in busLineGroup {
+                    let lineArray = [busLine.shortName, busLine.longName]
+                    groupArray.append(lineArray)
+                }
+                tableData.append(groupArray)
+            }
+            
+
             
             
             DispatchQueue.main.async {
