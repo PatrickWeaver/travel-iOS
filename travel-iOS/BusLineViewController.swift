@@ -59,7 +59,7 @@ class BusLineViewController: UITableViewController, CLLocationManagerDelegate {
         print("* * * * * * *")
         print(location.coordinate)
         
-        getBusStops()
+        getBusStops(busLine, then: parseBusStops)
         var busLineShortName: String
         if  busLine != nil {
             busLineShortName = busLine!.shortName
@@ -125,13 +125,7 @@ class BusLineViewController: UITableViewController, CLLocationManagerDelegate {
         }
     }
     
-    func getBusStops() {
-        guard let busLine = busLine else {
-            return
-        }
-        let discoveryUrl = "https://mta-api.glitch.me/api/bus/routes/\(busLine.shortName)"
-        makeApiCall(to: discoveryUrl, then: parseBusStops)
-    }
+    
     
     func parseBusStops(_ responseData: Data?) -> Void {
         guard let responseData = responseData else {

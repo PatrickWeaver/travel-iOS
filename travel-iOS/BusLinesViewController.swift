@@ -78,9 +78,13 @@ class BusLinesViewController: UIViewController, UITableViewDataSource, UITableVi
     
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let indexPath = tableView.indexPathForSelectedRow{
-            if let detailVC = segue.destination as? BusLineViewController {
-                detailVC.busLine = self.busLines[indexPath.section][indexPath.row]
+        if let indexPath = tableView.indexPathForSelectedRow {
+            if indexPath.section > 0 {
+                if let detailVC = segue.destination as? BusLineViewController {
+                    detailVC.busLine = self.busLines[indexPath.section - 1][indexPath.row]
+                }
+            } else {
+                
             }
         }
     }

@@ -26,9 +26,6 @@ func BusLineFromBusDiscoveryLine(_ discoveryLine: BusDiscoveryLine) -> BusLine {
 
 func BusStopFromDiscoveryBusStop(_ discoveryStop: BusDiscoveryStop, _ location: CLLocation) -> BusStop {
     
-    print("^ ^ ^ ^ ^ ")
-    print(location)
-    
     let latitude = discoveryStop.lat ?? 0.0
     let longitude = discoveryStop.long ?? 0.0
     let stopLocation = CLLocation(latitude: latitude, longitude: longitude)
