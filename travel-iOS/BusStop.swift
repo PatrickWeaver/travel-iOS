@@ -42,6 +42,22 @@ struct BusLineDiscoveryBlob: Decodable {
     }
 }
 
+struct BusLocationDiscoveryBlob: Decodable {
+    let statusCode: Int?
+    let currentUnixTime: Int? // Time?
+    let busLocationData: BusLocationData?
+    let statusMessage: String?
+    let version: Int?
+    
+    enum CodingKeys: String, CodingKey {
+        case statusCode = "code"
+        case currentUnixTime = "currentTime"
+        case busLocationData = "data"
+        case statusMessage = "text"
+        case version
+    }
+}
+
 struct BusLineData: Decodable {
     let entry: BusLineEntry?
     let references: BusLineReferences?
@@ -49,6 +65,16 @@ struct BusLineData: Decodable {
     enum CodingKeys: String, CodingKey {
         case entry
         case references
+    }
+}
+
+struct BusLocationData: Decodable {
+    let limitExceeded: Bool?
+    let stops: [BusLocationDiscoveryStop?]
+    
+    enum CodingKeys: String, CodingKey {
+        case limitExceeded
+        case stops
     }
 }
 
@@ -140,6 +166,77 @@ struct BusDiscoveryStop: Decodable {
         case intersectionName = "name"
         case routeIds
         case wheelchairBoarding
+    }
+}
+
+struct BusLocationDiscoveryStop: Decodable {
+    let stopId: String?
+    let direction: String? // Direction
+    let mtaId: String?
+    let lat: Double?
+    let locationType: Int?
+    let long: Double?
+    let intersectionName: String?
+    let routes: [BusLocationDiscoveryLine?]
+    let wheelchairBoarding: String?
+    
+    enum CodingKeys: String, CodingKey {
+        case stopId = "code"
+        case direction
+        case mtaId = "id"
+        case lat
+        case locationType
+        case long = "lon"
+        case intersectionName = "name"
+        case routes
+        case wheelchairBoarding
+    }
+}
+
+struct BusLocationDiscoveryLine: Decodable {
+    let agency: BusLocationDiscoveryAgency?
+    let color: String?
+    let description: String?
+    let id: String?
+    let longName: String?
+    let shortName: String?
+    let textColor: String?
+    let type: Int?
+    let url: String?
+    
+    enum CodingKeys: String, CodingKey {
+        case agency
+        case color
+        case description
+        case id
+        case longName
+        case shortName
+        case textColor
+        case type
+        case url
+    }
+}
+
+struct BusLocationDiscoveryAgency: Decodable {
+    let disclaimer: String?
+    let mtaId: String?
+    let lang: String?
+    let agencyName: String?
+    let phone: String?
+    let privateService: Bool?
+    let timezone: String?
+    let url: String?
+    
+    
+    enum CodingKeys: String, CodingKey {
+        case disclaimer
+        case mtaId = "id"
+        case lang
+        case agencyName = "name"
+        case phone
+        case privateService
+        case timezone
+        case url
     }
 }
 

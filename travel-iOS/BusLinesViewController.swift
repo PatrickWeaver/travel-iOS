@@ -7,11 +7,33 @@
 //
 
 import UIKit
+import CoreLocation
 
-class BusLinesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class BusLinesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate {
     
     var nearbyStops = [BusStop]()
     var busLines = [[BusLine]]()
+    
+    var locationManager = CLLocationManager()
+    var location = CLLocation(latitude: 0.0, longitude: 0.0)
+    
+    func startReceivingLocationChanges() {
+        let authorizationStatus = CLLocationManager.authorizationStatus()
+        if authorizationStatus != .authorizedWhenInUse && authorizationStatus != .authorizedAlways {
+            // User has not authorized access to location information.
+            return
+        }
+        // Do not start services that aren't available.
+        if !CLLocationManager.locationServicesEnabled() {
+            // Location services is not available.
+            return
+        }
+        // Configure and start the service.
+        locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+        locationManager.distanceFilter = 20.0  // In meters.
+        locationManager.delegate = self
+        locationManager.startUpdatingLocation()
+    }
     
     var tableData = [[[String]]]()
     
@@ -68,6 +90,9 @@ class BusLinesViewController: UIViewController, UITableViewDataSource, UITableVi
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         getBusRoutes()
+        startReceivingLocationChanges()
+        location = locationManager.location ?? CLLocation(latitude: 40.6892009, longitude: -73.9739544)
+        getBusStops(by: location, then: parseLocationStops)
         tableView.tableFooterView = UIView()
     }
 
@@ -182,6 +207,50 @@ class BusLinesViewController: UIViewController, UITableViewDataSource, UITableVi
             print(error)
             return
         }
+    }
+    
+    func parseLocationStops(_ responseData: Data?) -> Void {
+        print("* * * Parsing . . .")
+        guard let responseData = responseData else {
+            print("no response data to parse")
+            return
+        }
+        
+        do {
+            let apiData = try JSONDecoder().decode(BusLocationDiscoveryBlob.self, from: responseData)
+            //print(apiData)
+            
+            guard let stopsData = apiData.busLocationData else {
+                print("No stops data")
+                return
+            }
+            
+            for stop in stopsData.stops {
+                guard let stop = stop else {
+                    print("Error logging stop ids")
+                    return
+                }
+                print(stop.stopId ?? "")
+            }
+            
+            print("DONE")
+            
+            /*
+            DispatchQueue.main.async {
+                self.busLineTableView.reloadData()
+            }
+             */
+            
+            return
+        } catch {
+            print("Catch: Stops Location")
+            print(error)
+            return
+        }
+        
+        
+        print("parsing location stops")
+        return
     }
 }
 

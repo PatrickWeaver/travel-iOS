@@ -7,11 +7,20 @@
 //
 
 import Foundation
+import CoreLocation
 
-func getBusStops(_ busLine: BusLine?, then whenFinished: @escaping ((_ respondWith: Data?) -> Void)) {
+func getBusStops(by busLine: BusLine?, then whenFinished: @escaping ((_ respondWith: Data?) -> Void)) {
     guard let busLine = busLine else {
         return
     }
     let discoveryUrl = "https://mta-api.glitch.me/api/bus/routes/\(busLine.shortName)"
     makeApiCall(to: discoveryUrl, then: whenFinished)
+}
+
+func getBusStops(by location: CLLocation, then whenFinished: @escaping ((_ respondWith: Data?) -> Void)) {
+    print("LAT: \(location.coordinate.latitude)")
+    print("LONG: \(location.coordinate.longitude)")
+    
+    let locationUrl = "https://mta-api.glitch.me/api/bus/location?lat=\(location.coordinate.latitude)&long=\(location.coordinate.longitude)"
+    makeApiCall(to: locationUrl, then: whenFinished)
 }

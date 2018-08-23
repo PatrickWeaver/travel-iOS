@@ -11,7 +11,17 @@ import CoreLocation
 
 class BusLineViewController: UITableViewController, CLLocationManagerDelegate {
     
-    let locationManager = CLLocationManager()
+   
+    
+    var busLine: BusLine?
+    var busStops = [BusStop]()
+    var routeGroupings = [[String]]()
+    var routeGroupingNames = [String]()
+    var routeStops = [[BusStop]]()
+    
+    var locationManager = CLLocationManager()
+    var location = CLLocation(latitude: 0.0, longitude: 0.0)
+    
     func startReceivingLocationChanges() {
         let authorizationStatus = CLLocationManager.authorizationStatus()
         if authorizationStatus != .authorizedWhenInUse && authorizationStatus != .authorizedAlways {
@@ -29,13 +39,6 @@ class BusLineViewController: UITableViewController, CLLocationManagerDelegate {
         locationManager.delegate = self
         locationManager.startUpdatingLocation()
     }
-    
-    var busLine: BusLine?
-    var busStops = [BusStop]()
-    var routeGroupings = [[String]]()
-    var routeGroupingNames = [String]()
-    var routeStops = [[BusStop]]()
-    var location = CLLocation(latitude: 0.0, longitude: 0.0)
 
     @IBOutlet weak var shortName: UILabel!
     @IBOutlet var busLineTableView: UITableView!
@@ -59,7 +62,7 @@ class BusLineViewController: UITableViewController, CLLocationManagerDelegate {
         print("* * * * * * *")
         print(location.coordinate)
         
-        getBusStops(busLine, then: parseBusStops)
+        getBusStops(by: busLine, then: parseBusStops)
         var busLineShortName: String
         if  busLine != nil {
             busLineShortName = busLine!.shortName
