@@ -124,13 +124,17 @@ class BusLinesViewController: UIViewController, UITableViewDataSource, UITableVi
     
     
     func parseBusRoutes(_ responseData: Data?) -> Void {
+        print("ROUteS")
+        
         guard let responseData = responseData else {
             print("no response data to parse")
             return
         }
+        print(responseData)
         
         do {
             let apiData = try JSONDecoder().decode(BusLinesDiscoveryBlob.self, from: responseData)
+            print(apiData)
             guard var lastRefreshed = apiData.currentUnixTime else {
                 print("NO TIME")
                 return
@@ -208,11 +212,12 @@ class BusLinesViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     func parseLocationStops(_ responseData: Data?) -> Void {
-        print("* * * Parsing . . .")
+        print("NEARBY STOPS")
         guard let responseData = responseData else {
             print("no response data to parse")
             return
         }
+        print(responseData)
         
         // Add nearby stops here
         //var nbs = [String]()
@@ -220,7 +225,7 @@ class BusLinesViewController: UIViewController, UITableViewDataSource, UITableVi
         
         do {
             let apiData = try JSONDecoder().decode(BusLocationDiscoveryBlob.self, from: responseData)
-            //print(apiData)
+            print(apiData)
             
             guard let stopsData = apiData.busLocationData else {
                 print("No stops data")
@@ -247,8 +252,6 @@ class BusLinesViewController: UIViewController, UITableViewDataSource, UITableVi
             print(error)
             return
         }
-        
-        return
     }
 }
 

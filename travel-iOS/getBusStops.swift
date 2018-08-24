@@ -22,5 +22,6 @@ func getBusStops(by location: CLLocation, then whenFinished: @escaping ((_ respo
     print("LONG: \(location.coordinate.longitude)")
     
     let locationUrl = "https://mta-api.glitch.me/api/bus/location?lat=\(location.coordinate.latitude)&long=\(location.coordinate.longitude)"
+    print(locationUrl)
     makeApiCall(to: locationUrl, then: whenFinished)
 }

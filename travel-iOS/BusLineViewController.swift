@@ -58,7 +58,7 @@ class BusLineViewController: UITableViewController, CLLocationManagerDelegate {
         
         //self.locationManager.requestWhenInUseAuthorization()
         startReceivingLocationChanges()
-        location = locationManager.location!
+        location = locationManager.location ?? CLLocation(latitude: 40.6892009, longitude: -73.9739544)
         print("* * * * * * *")
         print(location.coordinate)
         

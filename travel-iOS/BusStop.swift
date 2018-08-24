@@ -71,10 +71,14 @@ struct BusLineData: Decodable {
 struct BusLocationData: Decodable {
     let limitExceeded: Bool?
     let stops: [BusLocationDiscoveryStop?]
+    //let outOfRange: Bool?
+    //let references: [Any?]?
     
     enum CodingKeys: String, CodingKey {
         case limitExceeded
         case stops
+        //case outOfRange
+        //case references
     }
 }
 
