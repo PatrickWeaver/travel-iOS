@@ -36,6 +36,7 @@ class BusLinesViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     var tableData = [[[String]]]()
+    var tableSections = [[String]]()
     
     @IBOutlet var tableView: UITableView!
     
@@ -89,6 +90,7 @@ class BusLinesViewController: UIViewController, UITableViewDataSource, UITableVi
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        tableData.append(tableSections)
         getBusRoutes()
         startReceivingLocationChanges()
         location = locationManager.location ?? CLLocation(latitude: 40.6892009, longitude: -73.9739544)
@@ -181,10 +183,6 @@ class BusLinesViewController: UIViewController, UITableViewDataSource, UITableVi
                 return lineNumber
             }
             
-            // Add nearby stops here
-            var nbs = [[String]]()
-            tableData.append(nbs)
-            
             for busLineGroup in busLines {
                 var groupArray = [[String]]()
                 for busLine in busLineGroup {
@@ -216,6 +214,10 @@ class BusLinesViewController: UIViewController, UITableViewDataSource, UITableVi
             return
         }
         
+        // Add nearby stops here
+        //var nbs = [String]()
+        //tableData.insert(nbs, at: 0)
+        
         do {
             let apiData = try JSONDecoder().decode(BusLocationDiscoveryBlob.self, from: responseData)
             //print(apiData)
@@ -231,15 +233,13 @@ class BusLinesViewController: UIViewController, UITableViewDataSource, UITableVi
                     return
                 }
                 print(stop.stopId ?? "")
+                let stopStrings = ["XYZ", stop.intersectionName ?? ""]
+                tableData[0].append(stopStrings)
             }
             
-            print("DONE")
-            
-            /*
             DispatchQueue.main.async {
-                self.busLineTableView.reloadData()
+                self.tableView.reloadData()
             }
-             */
             
             return
         } catch {
@@ -248,8 +248,6 @@ class BusLinesViewController: UIViewController, UITableViewDataSource, UITableVi
             return
         }
         
-        
-        print("parsing location stops")
         return
     }
 }
