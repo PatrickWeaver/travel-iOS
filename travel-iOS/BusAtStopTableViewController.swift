@@ -10,8 +10,10 @@ import UIKit
 
 class BusAtStopTableViewController: UITableViewController {
     
-    var busLine: BusLine?
+    //var busLine: BusLine?
+    var stopRoutes = [BusLine]()
     var busStop: BusStop?
+
     var trackedBusses = [BusAtStop]()
     
     @IBOutlet weak var busStopIntersection: UILabel!
@@ -32,7 +34,7 @@ class BusAtStopTableViewController: UITableViewController {
         if  busStop != nil {
             intersection = busStop!.intersectionName
         } else {
-            intersection = "NO DATA"
+            intersection = "BUS AT STOP NO DATA"
         }
         busStopIntersection.text = intersection
         tableView.tableFooterView = UIView()
@@ -102,10 +104,19 @@ class BusAtStopTableViewController: UITableViewController {
     
     func getTrackedBusses() {
         trackedBusses = [BusAtStop]()
-        guard let busStop = busStop, let busLine = busLine else {
+        guard let busStop = busStop else {
+            print("NO BUS STOP")
             return
         }
-        let realTimeUrl = "https://mta-api.glitch.me/api/bus/routes/\(busLine.shortName)/\(busStop.stopId)"
+        
+        let routes = stopRoutes.reduce("") {a, b in "\(a)\(b.shortName) "}
+        
+        var realTimeUrl = "https://mta-api.glitch.me/api/bus/stop/\(busStop.stopId)"
+        
+        if stopRoutes.count == 1 {
+            realTimeUrl += "?route=\(stopRoutes[0].shortName)"
+        }
+        
         makeApiCall(to: realTimeUrl, then: parseTrackedBusses)
     }
     

@@ -122,7 +122,9 @@ class BusLineViewController: UITableViewController, CLLocationManagerDelegate {
             let rowSection = indexPath.section
             let selectedRow = indexPath.row
             if let detailVC = segue.destination as? BusAtStopTableViewController {
-                detailVC.busLine = self.busLine
+                if (self.busLine != nil) {
+                    detailVC.stopRoutes.append(self.busLine!)
+                }
                 detailVC.busStop = self.routeStops[rowSection][selectedRow]
             }
         }

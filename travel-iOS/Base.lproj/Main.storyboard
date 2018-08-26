@@ -50,7 +50,36 @@
                                         <connections>
                                             <outlet property="longName" destination="vYC-fM-CVY" id="Z24-KF-sD1"/>
                                             <outlet property="shortName" destination="wTH-EL-RmO" id="MBw-QS-Wqo"/>
-                                            <segue destination="1j4-aJ-FeA" kind="show" identifier="BusLinesToBusLine" id="GEl-L9-PUT"/>
+                                            <segue destination="1j4-aJ-FeA" kind="show" id="aKB-E6-9LD"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="BusLocationStopCell" rowHeight="114" id="OHm-7N-BHq" customClass="BusLocationStopTableViewCell" customModule="travel_iOS" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="116" width="375" height="114"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="OHm-7N-BHq" id="8f0-HZ-AmS">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="113.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Routes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z1H-NI-5cl">
+                                                    <rect key="frame" x="15" y="11" width="135" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="IntersectionName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kPm-cJ-O5I">
+                                                    <rect key="frame" x="15" y="40" width="345" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="intersection" destination="kPm-cJ-O5I" id="Rjq-P6-Osl"/>
+                                            <outlet property="routes" destination="Z1H-NI-5cl" id="kCn-mJ-0Po"/>
+                                            <segue destination="lkd-VI-P4Z" kind="show" id="47p-ku-U99"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -149,7 +178,7 @@
                                     <outlet property="intersection" destination="ar9-Z6-3HD" id="DTO-LG-yCy"/>
                                     <outlet property="stopDistance" destination="jzZ-y5-ZFQ" id="wd4-FA-Csu"/>
                                     <outlet property="stopId" destination="f1J-LL-pui" id="ABP-wR-M8z"/>
-                                    <segue destination="lkd-VI-P4Z" kind="show" id="e0Z-Zx-pTI"/>
+                                    <segue destination="lkd-VI-P4Z" kind="show" identifier="lineStopSegue" id="e0Z-Zx-pTI"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -259,4 +288,7 @@
             <point key="canvasLocation" x="-102" y="88"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="47p-ku-U99"/>
+    </inferredMetricsTieBreakers>
 </document>

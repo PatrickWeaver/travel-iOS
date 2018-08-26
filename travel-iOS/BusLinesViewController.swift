@@ -12,6 +12,7 @@ import CoreLocation
 class BusLinesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate {
     
     var nearbyStops = [BusStop]()
+    var nearbyStopRoutes = [String]()
     var busLines = [[BusLine]]()
     
     var locationManager = CLLocationManager()
@@ -81,14 +82,25 @@ class BusLinesViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "BusLineCell") as? BusLineCell else {
-            return UITableViewCell()
+        
+        if indexPath.section == 0 {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "BusLocationStopCell") as? BusLocationStopTableViewCell else {
+                return UITableViewCell()
+            }
+            let stop = nearbyStops[indexPath.row]
+            cell.routes.text = nearbyStopRoutes[indexPath.row]
+            cell.intersection.text = stop.intersectionName
+            return cell
+        } else {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "BusLineCell") as? BusLineCell else {
+                return UITableViewCell()
+            }
+            cell.shortName.text = tableData[indexPath.section][indexPath.row][0]
+            //cell.shortName.text = busLines[indexPath.section][indexPath.row].shortName
+            cell.longName.text = tableData[indexPath.section][indexPath.row][1]
+            //cell.longName.text = busLines[indexPath.section][indexPath.row].longName
+            return cell
         }
-        cell.shortName.text = tableData[indexPath.section][indexPath.row][0]
-        //cell.shortName.text = busLines[indexPath.section][indexPath.row].shortName
-        cell.longName.text = tableData[indexPath.section][indexPath.row][1]
-        //cell.longName.text = busLines[indexPath.section][indexPath.row].longName
-        return cell
     }
     
     override func viewDidLoad() {
@@ -116,7 +128,6 @@ class BusLinesViewController: UIViewController, UITableViewDataSource, UITableVi
                 }
             } else {
                 if let detailVC = segue.destination as? BusAtStopTableViewController {
-                    //detailVC.busLine =
                     detailVC.busStop = self.nearbyStops[indexPath.row]
                 }
             }
@@ -131,7 +142,6 @@ class BusLinesViewController: UIViewController, UITableViewDataSource, UITableVi
     
     
     func parseBusRoutes(_ responseData: Data?) -> Void {
-        print("ROUteS")
         
         guard let responseData = responseData else {
             print("no response data to parse")
@@ -219,7 +229,6 @@ class BusLinesViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     func parseLocationStops(_ responseData: Data?) -> Void {
-        print("NEARBY STOPS")
         guard let responseData = responseData else {
             print("no response data to parse")
             return
@@ -232,12 +241,13 @@ class BusLinesViewController: UIViewController, UITableViewDataSource, UITableVi
         
         do {
             let apiData = try JSONDecoder().decode(BusLocationDiscoveryBlob.self, from: responseData)
-            print(apiData)
+            //print(apiData)
             
             guard let stopsData = apiData.busLocationData else {
                 print("No stops data")
                 return
             }
+            
             
             for stop in stopsData.stops {
                 guard let stop = stop else {
@@ -245,7 +255,13 @@ class BusLinesViewController: UIViewController, UITableViewDataSource, UITableVi
                     return
                 }
                 print(stop.stopId ?? "")
-                let routes = stop.routes.reduce("") {a, b in "\(a)\(b!.shortName!) "}
+                
+                guard let routesArray = stop.routes else {
+                    print("No routes array")
+                    return
+                }
+                let routes = routesArray.reduce("") {a, b in "\(a)\(b!.shortName!) "}
+                nearbyStopRoutes.append(routes)
                 let stopStrings = [routes, stop.intersectionName ?? ""]
                 tableData[0].append(stopStrings)
                 

@@ -70,7 +70,7 @@ struct BusLineData: Decodable {
 
 struct BusLocationData: Decodable {
     let limitExceeded: Bool?
-    let stops: [BusLocationDiscoveryStop?]
+    let stops: [BusDiscoveryStop?]
     //let outOfRange: Bool?
     //let references: [Any?]?
     
@@ -157,7 +157,8 @@ struct BusDiscoveryStop: Decodable {
     let locationType: Int?
     let long: Double?
     let intersectionName: String?
-    let routeIds: [String?]
+    let routeIds: [String?]?
+    let routes: [BusLocationDiscoveryLine?]?
     let wheelchairBoarding: String?
     
     enum CodingKeys: String, CodingKey {
@@ -169,29 +170,6 @@ struct BusDiscoveryStop: Decodable {
         case long = "lon"
         case intersectionName = "name"
         case routeIds
-        case wheelchairBoarding
-    }
-}
-
-struct BusLocationDiscoveryStop: Decodable {
-    let stopId: String?
-    let direction: String? // Direction
-    let mtaId: String?
-    let lat: Double?
-    let locationType: Int?
-    let long: Double?
-    let intersectionName: String?
-    let routes: [BusLocationDiscoveryLine?]
-    let wheelchairBoarding: String?
-    
-    enum CodingKeys: String, CodingKey {
-        case stopId = "code"
-        case direction
-        case mtaId = "id"
-        case lat
-        case locationType
-        case long = "lon"
-        case intersectionName = "name"
         case routes
         case wheelchairBoarding
     }
