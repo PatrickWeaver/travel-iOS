@@ -76,6 +76,10 @@ class BusLinesViewController: UIViewController, UITableViewDataSource, UITableVi
         return tableData[section].count
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 100;
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "BusLineCell") as? BusLineCell else {
             return UITableViewCell()
@@ -111,7 +115,10 @@ class BusLinesViewController: UIViewController, UITableViewDataSource, UITableVi
                     detailVC.busLine = self.busLines[indexPath.section - 1][indexPath.row]
                 }
             } else {
-                
+                if let detailVC = segue.destination as? BusAtStopTableViewController {
+                    //detailVC.busLine =
+                    detailVC.busStop = self.nearbyStops[indexPath.row]
+                }
             }
         }
     }
@@ -238,8 +245,13 @@ class BusLinesViewController: UIViewController, UITableViewDataSource, UITableVi
                     return
                 }
                 print(stop.stopId ?? "")
-                let stopStrings = ["XYZ", stop.intersectionName ?? ""]
+                let routes = stop.routes.reduce("") {a, b in "\(a)\(b!.shortName!) "}
+                let stopStrings = [routes, stop.intersectionName ?? ""]
                 tableData[0].append(stopStrings)
+                
+                let busStop = BusStopFromDiscoveryBusStop(stop, location)
+                
+                nearbyStops.append(busStop)
             }
             
             DispatchQueue.main.async {
