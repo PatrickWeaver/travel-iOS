@@ -36,20 +36,11 @@ class BusLinesViewController: UIViewController, UITableViewDataSource, UITableVi
         locationManager.startUpdatingLocation()
     }
     
-    var tableData = [[[String]]]()
-    var tableSections = [[String]]()
-    
     @IBOutlet var tableView: UITableView!
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return busLines.count
     }
-    
-    /*
-    func sectionIndexTitles(for tableView: UITableView) -> [String]? {
-        return ["B", "BX", "M", "Q", "S", "E", ""]
-    }
-    */
     
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -74,7 +65,11 @@ class BusLinesViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return tableData[section].count
+        if section == 0 {
+            return nearbyStops.count
+        } else {
+            return busLines[section].count
+        }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -95,10 +90,8 @@ class BusLinesViewController: UIViewController, UITableViewDataSource, UITableVi
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "BusLineCell") as? BusLineCell else {
                 return UITableViewCell()
             }
-            cell.shortName.text = tableData[indexPath.section][indexPath.row][0]
-            //cell.shortName.text = busLines[indexPath.section][indexPath.row].shortName
-            cell.longName.text = tableData[indexPath.section][indexPath.row][1]
-            //cell.longName.text = busLines[indexPath.section][indexPath.row].longName
+            cell.shortName.text = busLines[indexPath.section - 1][indexPath.row].shortName
+            cell.longName.text = busLines[indexPath.section - 1][indexPath.row].longName
             return cell
         }
     }
@@ -106,7 +99,6 @@ class BusLinesViewController: UIViewController, UITableViewDataSource, UITableVi
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        tableData.append(tableSections)
         getBusRoutes()
         startReceivingLocationChanges()
         location = locationManager.location ?? CLLocation(latitude: 40.6892009, longitude: -73.9739544)
@@ -204,18 +196,6 @@ class BusLinesViewController: UIViewController, UITableViewDataSource, UITableVi
                 return lineNumber
             }
             
-            for busLineGroup in busLines {
-                var groupArray = [[String]]()
-                for busLine in busLineGroup {
-                    let lineArray = [busLine.shortName, busLine.longName]
-                    groupArray.append(lineArray)
-                }
-                tableData.append(groupArray)
-            }
-            
-
-            
-            
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }
@@ -234,10 +214,6 @@ class BusLinesViewController: UIViewController, UITableViewDataSource, UITableVi
             return
         }
         print(responseData)
-        
-        // Add nearby stops here
-        //var nbs = [String]()
-        //tableData.insert(nbs, at: 0)
         
         do {
             let apiData = try JSONDecoder().decode(BusLocationDiscoveryBlob.self, from: responseData)
@@ -262,8 +238,6 @@ class BusLinesViewController: UIViewController, UITableViewDataSource, UITableVi
                 }
                 let routes = routesArray.reduce("") {a, b in "\(a)\(b!.shortName!) "}
                 nearbyStopRoutes.append(routes)
-                let stopStrings = [routes, stop.intersectionName ?? ""]
-                tableData[0].append(stopStrings)
                 
                 let busStop = BusStopFromDiscoveryBusStop(stop, location)
                 

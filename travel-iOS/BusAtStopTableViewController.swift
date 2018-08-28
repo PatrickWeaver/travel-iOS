@@ -64,37 +64,52 @@ class BusAtStopTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "BusAtStopCell") as? BusAtStopCell else {
-            print("Can't assign cell")
-            return UITableViewCell()
-        }
         let trackedBus = trackedBusses[indexPath.row]
-        
-        
-        var countdown = ""
-        if (trackedBus.arrivalCountdown != nil) {
-            countdown = "\(trackedBus.arrivalCountdown!)\n"
-        }
-        
-        var milesAway = ""
-        if trackedBus.arrivalProximityText.range(of: "miles") == nil {
-            milesAway = "\(((trackedBus.milesAway * 10).rounded(.up)/10)) miles away\n"
-        }
-        
-        var stopsAway = ""
-        if trackedBus.arrivalProximityText.range(of: "stop") == nil {
-            if trackedBus.stopsAway != 1 {
-                stopsAway = "\(trackedBus.stopsAway) stops away"
-            } else {
-                stopsAway = "\(trackedBus.stopsAway) stop away"
+        if trackedBus.metersAway < 999999999 {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "milesAwayCell") as? milesAwayBusAtStopCell else {
+                print("Miles away but can't assign cell")
+                return UITableViewCell()
             }
-        }
-        
-        let arrivalProximityText = "\(trackedBus.arrivalProximityText)\n\(countdown)\(milesAway)\(stopsAway)"
-        
-        cell.arrivalProximityText.text = arrivalProximityText
+            
+            cell.milesAway.text = "\(trackedBus.milesAway) miles Away"
+            cell.estimatedArrival.text = "Arriving in: \(trackedBus.arrivalCountdown)"
+            return cell
+            
+        } else {
+            
+            
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "BusAtStopCell") as? BusAtStopCell else {
+                print("Can't assign cell")
+                return UITableViewCell()
+            }
+            
+            
+            
+            var countdown = ""
+            if (trackedBus.arrivalCountdown != nil) {
+                countdown = "\(trackedBus.arrivalCountdown!)\n"
+            }
+            
+            var milesAway = ""
+            if trackedBus.arrivalProximityText.range(of: "miles") == nil {
+                milesAway = "\(((trackedBus.milesAway * 10).rounded(.up)/10)) miles away\n"
+            }
+            
+            var stopsAway = ""
+            if trackedBus.arrivalProximityText.range(of: "stop") == nil {
+                if trackedBus.stopsAway != 1 {
+                    stopsAway = "\(trackedBus.stopsAway) stops away"
+                } else {
+                    stopsAway = "\(trackedBus.stopsAway) stop away"
+                }
+            }
+            
+            let arrivalProximityText = "\(trackedBus.arrivalProximityText)\n\(countdown)\(milesAway)\(stopsAway)"
+            
+            cell.arrivalProximityText.text = arrivalProximityText
 
-        return cell
+            return cell
+        }
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
