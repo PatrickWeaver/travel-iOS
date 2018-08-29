@@ -14,6 +14,9 @@ class stopsAwayBusAtStopCell: UITableViewCell {
     
     @IBOutlet weak var estimatedArrival: UILabel!
     
+    @IBOutlet weak var arrivalProximityText: UILabel!
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

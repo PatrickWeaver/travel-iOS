@@ -261,9 +261,17 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="arrivalProximityText" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RxQ-TW-I8T">
+                                            <rect key="frame" x="16" y="65" width="149" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="arrivalProximityText" destination="RxQ-TW-I8T" id="c2y-UF-mwN"/>
                                     <outlet property="estimatedArrival" destination="WoR-Fw-pqj" id="rdr-1B-9HE"/>
                                     <outlet property="milesAway" destination="r5r-lv-ami" id="66F-wK-9l1"/>
                                 </connections>
@@ -289,9 +297,17 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="arrivalProximityText" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4On-e2-6Cc">
+                                            <rect key="frame" x="16" y="62" width="149" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="arrivalProximityText" destination="4On-e2-6Cc" id="lkF-nG-19Y"/>
                                     <outlet property="estimatedArrival" destination="eYh-g9-mX7" id="eIu-RW-fid"/>
                                     <outlet property="stopsAway" destination="x9v-Tq-GRo" id="PHd-BV-yHB"/>
                                 </connections>
@@ -345,6 +361,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="47p-ku-U99"/>
+        <segue reference="e0Z-Zx-pTI"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -71,8 +71,9 @@ class BusAtStopTableViewController: UITableViewController {
                 return UITableViewCell()
             }
             
-            cell.milesAway.text = "\(trackedBus.milesAway) miles Away"
-            cell.estimatedArrival.text = "Arriving in: \(trackedBus.arrivalCountdown)"
+            cell.milesAway.text = "\(((trackedBus.milesAway * 10).rounded(.up)/10)) miles Away"
+            cell.estimatedArrival.text = "Arriving in: \(trackedBus.arrivalCountdown ?? "Unknown")"
+            cell.arrivalProximityText.text = "\(trackedBus.arrivalProximityText)"
             return cell
             
         } else {
